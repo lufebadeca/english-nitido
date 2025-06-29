@@ -46,7 +46,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
     if (currentQuestion.audioUrl || currentQuestion.correctAnswer) {
       setIsPlayingAudio(true);
       try {
-        await audioManager.speakWord(currentQuestion.correctAnswer);
+        await audioManager.speakWord(currentQuestion.audioUrl || currentQuestion.correctAnswer);
       } catch (error) {
         console.error('Error playing audio:', error);
       } finally {

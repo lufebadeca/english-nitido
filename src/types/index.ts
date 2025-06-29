@@ -9,7 +9,7 @@ export interface WordEntry {
     sentence: string;
   };
   examples: string[];
-  wordFamily: string[];
+  wordFamily: {en: string, es: string}[];
   difficulty: number;
   category?: string;
   visualAid?: string;

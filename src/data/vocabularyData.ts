@@ -13,7 +13,7 @@ export const spanishLikeWords: WordEntry[] = [
       'She works at the hospital as a nurse',
       'We visited him at the hospital yesterday'
     ],
-    wordFamily: ['hospitalize', 'hospitality', 'hospitable'],
+    wordFamily: [{en:'hospitalize', es:'hospitalizar'}, {en:'hospitality', es:'hospitalidad'}, {en:'hospitable', es:'hospitalario'}, {en:'inhospitable', es:'inhóspito'}, {en:'clinic', es:'clínica'}],
     difficulty: 1,
     category: 'spanish-like',
     regionalVariants: {
@@ -21,7 +21,7 @@ export const spanishLikeWords: WordEntry[] = [
       'Argentina': 'hospital',
       'Spain': 'hospital'
     },
-    mnemonic: 'Same spelling, different pronunciation - stress on HOS-pi-tal'
+    mnemonic: 'Misma escritura, diferente pronunciación - acentuación en HOS-pi-tal'
   },
   {
     en: 'animal',
@@ -35,10 +35,10 @@ export const spanishLikeWords: WordEntry[] = [
       'Wild animals live in the forest',
       'My favorite animal is a dolphin'
     ],
-    wordFamily: ['animals', 'animate', 'animation'],
+    wordFamily: [{en:'animals', es:'animales'}, {en:'animate', es:'animar'}, {en:'animation', es:'animación'}, {en:'being', es:'ser'}, {en:'creature', es:'criatura'}, {en:'beast', es:'bestia'}, {en:'pet', es:'mascota'}],
     difficulty: 1,
     category: 'spanish-like',
-    mnemonic: 'AN-i-mal (English) vs a-ni-MAL (Spanish) - stress moves forward'
+    mnemonic: 'AN-i-mal (Inglés) vs a-ni-MAL (Español) - acentuación en AN-i-mal'
   },
   {
     en: 'natural',
@@ -52,10 +52,10 @@ export const spanishLikeWords: WordEntry[] = [
       'She has natural beauty',
       'It\'s natural to feel nervous'
     ],
-    wordFamily: ['nature', 'naturally', 'naturalist'],
+    wordFamily: [{en:'nature', es:'naturaleza'}, {en:'naturally', es:'naturalmente'}, {en:'naturalist', es:'naturalista'}, {en:'unnatural', es:'extraño'}],
     difficulty: 2,
     category: 'spanish-like',
-    mnemonic: 'NAT-u-ral (English) vs na-tu-RAL (Spanish)'
+    mnemonic: 'NAT-u-ral (Inglés) vs na-tu-RAL (Español)'
   },
   {
     en: 'family',
@@ -69,10 +69,10 @@ export const spanishLikeWords: WordEntry[] = [
       'We have a big family dinner every Sunday',
       'Family comes first'
     ],
-    wordFamily: ['familiar', 'familiarize', 'familial'],
+    wordFamily: [{en:'familiar', es:'familiar'}, {en:'familiarize', es:'familiarizar'}, {en:'familial', es:'familial'}],
     difficulty: 1,
     category: 'spanish-like',
-    mnemonic: 'FAM-i-ly sounds like "fam-ilia" but shorter'
+    mnemonic: 'FAM-i-ly suena como "fam-ilia" pero más corta'
   }
 ];
 
@@ -89,7 +89,7 @@ export const techWords: WordEntry[] = [
       'The download is complete',
       'I need to download this file'
     ],
-    wordFamily: ['downloadable', 'downloading', 'downloader'],
+    wordFamily: [{en:'downloadable', es:'descargable'}, {en:'downloading', es:'descargando'}, {en:'downloader', es:'descargador'}],
     difficulty: 2,
     category: 'tech',
     mnemonic: 'DOWN (abajo) + LOAD (cargar) = download (descargar)'
@@ -106,10 +106,10 @@ export const techWords: WordEntry[] = [
       'Live streaming is very popular',
       'The streaming quality is excellent'
     ],
-    wordFamily: ['stream', 'streamer', 'streamline'],
+    wordFamily: [{en:'stream', es:'transmisión'}, {en:'streamer', es:'streamer'}, {en:'streamline', es:'optimizar'}],
     difficulty: 2,
     category: 'tech',
-    mnemonic: 'STREAM like a river flowing = continuous data flow'
+    mnemonic: 'STREAM (como un río fluyendo) = transmisión en vivo (fluyen datos)'
   },
   {
     en: 'upload',
@@ -123,10 +123,10 @@ export const techWords: WordEntry[] = [
       'The upload failed, try again',
       'Please upload your resume'
     ],
-    wordFamily: ['uploadable', 'uploading', 'uploader'],
+    wordFamily: [{en:'uploadable', es:'subible'}, {en:'uploading', es:'subiendo'}, {en:'uploader', es:'subidor'}],
     difficulty: 2,
     category: 'tech',
-    mnemonic: 'UP (arriba) + LOAD (cargar) = upload (subir)'
+    mnemonic: 'UP (arriba) + LOAD (cargar) = upload (subir/cargar)'
   },
   {
     en: 'hashtag',
@@ -140,10 +140,10 @@ export const techWords: WordEntry[] = [
       'The hashtag went viral',
       'Add relevant hashtags to increase visibility'
     ],
-    wordFamily: ['hash', 'tag', 'tagging'],
+    wordFamily: [{en:'hash', es:'hash'}, {en:'tag', es:'tag'}, {en:'tagging', es:'tagging'}],
     difficulty: 2,
     category: 'tech',
-    mnemonic: 'HASH (#) + TAG (etiqueta) = hashtag'
+    mnemonic: 'HASH (#) + TAG (etiqueta) = hashtag (etiqueta con #)'
   }
 ];
 
@@ -160,10 +160,10 @@ export const commonVerbs: WordEntry[] = [
       'Think before you speak',
       'What do you think about this idea?'
     ],
-    wordFamily: ['thought', 'thinking', 'thinker', 'thoughtful'],
+    wordFamily: [{en:'thought', es:'pensamiento'}, {en:'thinking', es:'pensando'}, {en:'thinker', es:'pensador'}, {en:'thoughtful', es:'pensativo, atento'}],
     difficulty: 2,
     category: 'common-verbs',
-    mnemonic: 'THINK with TH sound - tongue between teeth'
+    mnemonic: 'THINK con sonido TH - lengua entre dientes'
   },
   {
     en: 'understand',
@@ -177,10 +177,10 @@ export const commonVerbs: WordEntry[] = [
       'I understand the problem now',
       'It\'s hard to understand his accent'
     ],
-    wordFamily: ['understanding', 'understood', 'understandable'],
+    wordFamily: [{en:'understanding', es:'entendimiento'}, {en:'understood', es:'entendido'}, {en:'understandable', es:'entendible'}],
     difficulty: 2,
     category: 'common-verbs',
-    mnemonic: 'UNDER + STAND = understand (estar debajo para entender)'
+    mnemonic: 'UNDER + STAND = understand (estar debajo para entender en profundidad algo)'
   },
   {
     en: 'believe',
@@ -194,10 +194,10 @@ export const commonVerbs: WordEntry[] = [
       'Do you believe this story?',
       'She believes in hard work'
     ],
-    wordFamily: ['belief', 'believer', 'believable', 'unbelievable'],
+    wordFamily: [{en:'belief', es:'creencia'}, {en:'believer', es:'creyente'}, {en:'believable', es:'creíble'}, {en:'unbelievable', es:'increible'}, {en:'faith', es:'fe'}],
     difficulty: 2,
     category: 'common-verbs',
-    mnemonic: 'be-LIEVE - stress on second syllable'
+    mnemonic: 'be-LIEVE - acentuación en segunda sílaba'
   },
   {
     en: 'remember',
@@ -211,10 +211,10 @@ export const commonVerbs: WordEntry[] = [
       'Please remember to call me',
       'Do you remember this song?'
     ],
-    wordFamily: ['memory', 'memorable', 'remembrance'],
+    wordFamily: [{en:'memory', es:'memoria'}, {en:'memorable', es:'memorable'}, {en:'remembrance', es:'conmemoración'}],
     difficulty: 2,
     category: 'common-verbs',
-    mnemonic: 're-MEM-ber - like "re-member" putting pieces back together'
+    mnemonic: 're-MEM-ber - suena como ri-MEM-br'
   }
 ];
 
@@ -231,10 +231,10 @@ export const animeMarvelWords: WordEntry[] = [
       'Every superhero has a weakness',
       'She dreams of being a superhero'
     ],
-    wordFamily: ['super', 'hero', 'heroic', 'heroism'],
+    wordFamily: [{en:'super', es:'super'}, {en:'hero', es:'heroe'}, {en:'heroic', es:'heroico'}, {en:'heroism', es:'heroísmo'}],
     difficulty: 2,
     category: 'anime-marvel',
-    mnemonic: 'SUPER + HERO = superhero (like Superman!)'
+    mnemonic: 'SUPER + HERO = superhéroe (como Superman!)'
   },
   {
     en: 'villain',
@@ -248,10 +248,10 @@ export const animeMarvelWords: WordEntry[] = [
       'Every story needs a good villain',
       'Thanos is a powerful villain'
     ],
-    wordFamily: ['villainous', 'villainy'],
+    wordFamily: [{en:'villainous', es:'villano'}, {en:'villainy', es:'villanía'}, {en:'foe', es:'enemigo'}, {en:'boss', es:'jefe'}],
     difficulty: 2,
     category: 'anime-marvel',
-    mnemonic: 'VIL-lain - sounds like "vil" (bad in Spanish)'
+    mnemonic: 'VIL-lain - suena como "vil"'
   },
   {
     en: 'power',
@@ -265,10 +265,10 @@ export const animeMarvelWords: WordEntry[] = [
       'With great power comes great responsibility',
       'The power went out during the storm'
     ],
-    wordFamily: ['powerful', 'powerless', 'empower'],
+    wordFamily: [{en:'powerful', es:'poderoso'}, {en:'powerless', es:'sin poder'}, {en:'empower', es:'empoderar'}, {en:'fighter', es:'luchador'}, {en:'fight', es:'luchar'}],
     difficulty: 1,
     category: 'anime-marvel',
-    mnemonic: 'POW-er - like the sound "POW!" in comics'
+    mnemonic: 'POW-er - suena como "POW!" (pau) en cómics'
   },
   {
     en: 'transformation',
@@ -282,10 +282,10 @@ export const animeMarvelWords: WordEntry[] = [
       'His transformation into a hero was gradual',
       'The magical transformation surprised everyone'
     ],
-    wordFamily: ['transform', 'transformer', 'transformative'],
+    wordFamily: [{en:'transform', es:'transformar'}, {en:'transformer', es:'transformador'}, {en:'transformation', es:'transformación'}],
     difficulty: 3,
     category: 'anime-marvel',
-    mnemonic: 'trans-for-MA-tion - stress on MA like "magia" (magic)'
+    mnemonic: 'trans-for-MA-tion - acentuación en MA (mei)'
   }
 ];
 
@@ -302,10 +302,10 @@ export const adjectiveWords: WordEntry[] = [
       'The sunset is beautiful tonight',
       'What a beautiful song!'
     ],
-    wordFamily: ['beauty', 'beautify', 'beautifully'],
+    wordFamily: [{en:'beauty', es:'hermosura'}, {en:'beautifully', es:'hermosamente'}, {en:'handsome', es:'guapo'}, {en:'good-looking', es:'bonito'}, {en:'cute', es:'lindo'}],
     difficulty: 2,
     category: 'adjectives',
-    mnemonic: 'BEAU-ti-ful - like "beauty" but with -ful ending'
+    mnemonic: 'BEAU-ti-ful - suena como "beauty" pero agregando fəl'
   },
   {
     en: 'intelligent',
@@ -319,10 +319,10 @@ export const adjectiveWords: WordEntry[] = [
       'That was an intelligent decision',
       'Dolphins are intelligent animals'
     ],
-    wordFamily: ['intelligence', 'intelligently', 'unintelligent'],
+    wordFamily: [{en:'intelligence', es:'inteligencia (IQ)'}, {en:'smart', es:'inteligente, hábil'}, {en:'clever', es:'listo'}, {en:'wise', es:'sabio'} ],
     difficulty: 2,
     category: 'adjectives',
-    mnemonic: 'in-TEL-li-gent - stress on TEL like "teléfono"'
+    mnemonic: 'in-TEL-li-gent - acentuación en TEL'
   },
   {
     en: 'comfortable',
@@ -336,10 +336,10 @@ export const adjectiveWords: WordEntry[] = [
       'I feel comfortable here',
       'Wear comfortable shoes for walking'
     ],
-    wordFamily: ['comfort', 'comfortably', 'uncomfortable'],
+    wordFamily: [{en:'comfort', es:'comodidad'}, {en:'comfortably', es:'cómodamente'}, {en:'uncomfortable', es:'incómodo/a'}],
     difficulty: 2,
     category: 'adjectives',
-    mnemonic: 'COM-fort-able - gives you comfort'
+    mnemonic: 'COM-fort-able - suena como "comfort"'
   },
   {
     en: 'dangerous',
@@ -353,10 +353,10 @@ export const adjectiveWords: WordEntry[] = [
       'Swimming here is dangerous',
       'He has a dangerous job'
     ],
-    wordFamily: ['danger', 'dangerously', 'endanger'],
+    wordFamily: [{en:'danger', es:'peligro'}, {en:'dangerously', es:'peligrosamente'}, {en:'endanger', es:'poner en peligro'}, {en:'risk', es:'riesgo'}, {en:'risky', es:'arriesgado'} ],
     difficulty: 2,
     category: 'adjectives',
-    mnemonic: 'DAN-ger-ous - danger + ous ending'
+    mnemonic: 'DAN-ger-ous - suena como "danger" pero agregando -əs'
   }
 ];
 
@@ -373,10 +373,10 @@ export const connectorWords: WordEntry[] = [
       'The weather was bad. However, we had fun',
       'It\'s expensive. However, it\'s worth it'
     ],
-    wordFamily: ['how', 'ever', 'whatever'],
+    wordFamily: [{en:'how', es:'cómo'}, {en:'ever', es:'cualquier'}, {en:'whatever', es:'cualquier cosa'}, {en: 'wherever', es: 'cualquier lugar'}, {en: 'whenever', es: 'cualquier momento'}],
     difficulty: 2,
     category: 'connectors',
-    mnemonic: 'how-EV-er - like "how" + "ever" = sin embargo'
+    mnemonic: 'how-EV-er - suena como "how" + "ever" = sin embargo'
   },
   {
     en: 'therefore',
@@ -390,7 +390,7 @@ export const connectorWords: WordEntry[] = [
       'He studied hard. Therefore, he passed',
       'The store is closed. Therefore, we can\'t buy anything'
     ],
-    wordFamily: ['there', 'fore', 'before'],
+    wordFamily: [{en:'there', es:'allá'}, {en:'fore', es:'ante'}, {en:'before', es:'antes'}],
     difficulty: 2,
     category: 'connectors',
     mnemonic: 'THERE-fore - "there" + "fore" = por lo tanto'
@@ -407,7 +407,7 @@ export const connectorWords: WordEntry[] = [
       'She smiled although she was sad',
       'Although he\'s young, he\'s very wise'
     ],
-    wordFamily: ['all', 'though', 'through'],
+    wordFamily: [{en:'all', es:'todos'}, {en:'though', es:'aunque'}, {en:'through', es:'a través de'}],
     difficulty: 2,
     category: 'connectors',
     mnemonic: 'al-THOUGH - "all" + "though" = aunque'
@@ -424,7 +424,7 @@ export const connectorWords: WordEntry[] = [
       'He\'s smart. Furthermore, he\'s hardworking',
       'The food is good. Furthermore, the service is excellent'
     ],
-    wordFamily: ['further', 'more', 'moreover'],
+    wordFamily: [{en:'further', es:'más'}, {en:'more', es:'más'}, {en:'moreover', es:'además'}],
     difficulty: 3,
     category: 'connectors',
     mnemonic: 'FUR-ther-more - "further" + "more" = además'
