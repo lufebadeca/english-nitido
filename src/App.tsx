@@ -70,7 +70,7 @@ const AppContent: React.FC = () => {
             <Route index element={<HomePage />} />
             <Route path="lessons" element={<LessonsPage />} />
             <Route path="lesson/phonetics" element={<PhoneticsLesson />} />
-            <Route path="lesson/:lessonId" element={<VocabularyLessonPage />} />
+             <Route path="lesson/:lessonId" element={<VocabularyLessonPage />} /> {/*lesson types: vocabulary, grammar */}
             <Route path="practice" element={<PracticePage />} />
             <Route path="assessment" element={<AssessmentPage />} />
             <Route path="mnemonics" element={<MnemonicsPage />} />

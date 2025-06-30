@@ -4,7 +4,11 @@ export const basicGrammarRules: GrammarRule[] = [
   {
     id: 'present-simple',
     title: 'Presente Simple',
-    explanation: 'El presente simple se usa para expresar acciones habituales, hechos generales y estados permanentes.',
+    explanation: ["El presente simple se usa para expresar acciones habituales, hechos generales y estados permanentes.",
+    "Para la primera persona singular (I), usa el verbo en su forma base: (work, like, do).",
+    "Para la tercera persona singular (he, she, it) agrega la terminación -s o -es: (works, likes, does).",
+    "Para la segunda persona singular (you) y la tercera persona plural (you, we, they) usa el verbo en su forma base: (work, like, do).",
+    "En negativo, el verbo principal no lleva \"s\", por ejemplo: (I don't work, she doesn't like, they do not do)."],
     examples: [
       {
         correct: 'I work every day',
@@ -21,6 +25,12 @@ export const basicGrammarRules: GrammarRule[] = [
         incorrect: 'We don\'t likes coffee',
         translation: 'No nos gusta el café',
         explanation: 'En negativo, el verbo principal no lleva "s"'
+      },
+      {
+        correct: 'She does not have a car',
+        incorrect: 'She do not have a car',
+        translation: 'Ella no tiene un coche',
+        explanation: 'Tercera persona singular negativo - añado "not" al verbo'
       }
     ],
     commonMistakes: [
@@ -32,7 +42,11 @@ export const basicGrammarRules: GrammarRule[] = [
   {
     id: 'articles',
     title: 'Artículos (A, An, The)',
-    explanation: 'Los artículos determinan si hablamos de algo específico (the) o general (a/an).',
+    explanation: ["Los artículos determinan si hablamos de algo específico (the) o general (a/an).",
+      "El artículo 'the' se usa para referirse a algo específico o conocido previamente.",
+      "El artículo 'a' se usa para referirse a algo general o no específico.",
+      "El artículo 'an' se usa para referirse a algo que comienza con una vocal.",  
+    ],
     examples: [
       {
         correct: 'I need a pen',
@@ -59,7 +73,12 @@ export const basicGrammarRules: GrammarRule[] = [
   {
     id: 'word-order',
     title: 'Orden de Palabras',
-    explanation: 'El inglés sigue un orden estricto: Sujeto + Verbo + Objeto + Complementos.',
+    explanation: ["El inglés sigue un orden estricto: Sujeto + Verbo + Objeto + Complementos.",
+      "El sujeto va al inicio de la oración.",
+      "El verbo va después del sujeto.",
+      "El objeto va después del verbo.",
+      "Los complementos vienen al final de la oración.",
+    ],
     examples: [
       {
         correct: 'I bought a book yesterday',
@@ -142,7 +161,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   }
 ];
 
-export const grammarLesson: Lesson = {
+export const grammarLessonsData: Lesson = {
   id: 'basic-grammar',
   title: 'Gramática Básica del Inglés',
   description: 'Aprende las reglas fundamentales de la gramática inglesa',
@@ -164,6 +183,7 @@ export const grammarLesson: Lesson = {
       ],
       examples: [
         'I am a student (Soy estudiante) - necesita artículo "a"',
+        'The teachers are very kind (Los maestros son muy amables) - verbo sin "s"',
         'She speaks English (Ella habla inglés) - verbo con "s"',
         'The book is red (El libro es rojo) - orden fijo'
       ]
@@ -172,3 +192,5 @@ export const grammarLesson: Lesson = {
   quiz: grammarQuizQuestions,
   achievements: ['grammar-guru']
 };
+
+// To Be Verb

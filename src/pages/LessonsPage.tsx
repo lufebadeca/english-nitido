@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Volume2, Globe, Brain, Star, Lock, Code, Zap, MessageCircle, Link as LinkIcon } from 'lucide-react';
+import { BookOpen, Volume2, Globe, Brain, Star, Lock, Code, Zap, MessageCircle, User, Link as LinkIcon } from 'lucide-react';
 import { ProgressManager } from '../utils/progressUtils';
 
 const LessonsPage: React.FC = () => {
@@ -51,6 +51,17 @@ const LessonsPage: React.FC = () => {
       points: 150,
       isUnlocked: progress.completedLessons.includes('spanish-like-words'),
       path: '/lesson/tech-vocabulary'
+    },
+    {
+      id: 'to-be-verb',
+      title: 'El Verbo To Be',
+      description: 'Domina el uso del verbo to be en inglés, el cual es un verbo irregular.',
+      icon: User,
+      difficulty: 2,
+      duration: '45 min',
+      points: 200,
+      isUnlocked: progress.completedLessons.includes('basic-grammar'),
+      path: '/lesson/to-be-verb'
     },
     {
       id: 'common-verbs',

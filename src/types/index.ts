@@ -117,7 +117,7 @@ export interface InformativeSection {
 export interface GrammarRule {
   id: string;
   title: string;
-  explanation: string;
+  explanation: string[];
   examples: GrammarExample[];
   commonMistakes: string[];
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { lessonsData } from '../data/vocabularyData';
-import { grammarLesson } from '../data/grammarData';
+import { vocabLessonsData } from '../data/vocabularyData';
+import { grammarLessonsData } from '../data/grammarData';
 import LessonLayout from '../components/LessonLayout';
 
 const VocabularyLessonPage: React.FC = () => {
   const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
 
-  const allLessons = [...lessonsData, grammarLesson];
+  const allLessons = [...vocabLessonsData, grammarLessonsData];
   const lesson = allLessons.find(l => l.id === lessonId);
 
   if (!lesson) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Users, Trophy, Settings, Volume2, Shield, LogOut } from 'lucide-react';
+import { Home, BookOpen, Users, Trophy, CheckCircle, Settings, Volume2, Shield, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -10,7 +10,7 @@ const Navigation: React.FC = () => {
 
   const navItems = [
     { path: '/', icon: Home, label: 'Inicio' },
-    { path: '/assessment', icon: BookOpen, label: 'Evaluación' },
+    { path: '/assessment', icon: CheckCircle, label: 'Evaluación' },
     { path: '/lessons', icon: BookOpen, label: 'Lecciones' },
     { path: '/practice', icon: Volume2, label: 'Práctica' },
     { path: '/achievements', icon: Trophy, label: 'Logros' },

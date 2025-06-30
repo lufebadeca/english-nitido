@@ -69,7 +69,7 @@ export const spanishLikeWords: WordEntry[] = [
       'We have a big family dinner every Sunday',
       'Family comes first'
     ],
-    wordFamily: [{en:'familiar', es:'familiar'}, {en:'familiarize', es:'familiarizar'}, {en:'familial', es:'familial'}],
+    wordFamily: [{en:'familiar', es:'familiar'}, {en:'familiarize', es:'familiarizar'}, {en:'relative', es:'pariente'}],
     difficulty: 1,
     category: 'spanish-like',
     mnemonic: 'FAM-i-ly suena como "fam-ilia" pero más corta'
@@ -642,7 +642,7 @@ export const connectorsQuiz: QuizQuestion[] = [
   }
 ];
 
-export const lessonsData: Lesson[] = [
+export const vocabLessonsData: Lesson[] = [
   {
     id: 'spanish-like-words',
     title: 'Palabras Similares al Español',
