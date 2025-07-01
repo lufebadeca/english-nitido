@@ -41,6 +41,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
+      
       {/* Welcome Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

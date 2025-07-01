@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Users, BookOpen, Trophy, TrendingUp, Calendar, Award } from 'lucide-react';
 import { supabase } from '../utils/supabase';
 import { User } from '../types';
+import VoiceList from '../components/BroserLanguages';
 
 const AdminDashboard: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -94,6 +95,8 @@ const AdminDashboard: React.FC = () => {
           Supervisa el progreso de todos los estudiantes
         </p>
       </motion.div>
+
+      <VoiceList />
 
       {/* Stats Cards */}
       <motion.div
