@@ -41,24 +41,24 @@ export class AudioManager {
       console.log(text);
 
       const utterance = new SpeechSynthesisUtterance(text);
-      //utterance.lang = options.lang || 'en-US';
-      const lang = options.lang || 'en-US';
-      if (lang.startsWith('es')) {
-        const preferredVoice = this.voices.find(voice => 
-          voice.name.includes('Spanish') ||  voice.lang === 'es-MX' || voice.lang === 'es-ES'
-        );
-        if (preferredVoice) {
-          utterance.voice = preferredVoice;
-        }
-      }else
-      { // Use a British or American English voice if available
-        const preferredVoice = this.voices.find(voice => 
-          voice.name.includes('English') || voice.lang === 'en-US' || voice.lang === 'en-GB' // voice.lang === 'es-ES' || voice.lang === 'es-MX'
-        );
-        if (preferredVoice) {
-          utterance.voice = preferredVoice;
-        }
-      }
+    const lang = options.lang || 'en-US';
+
+    // Normalizamos el código de idioma para comparar
+    const normalize = (str: string) => str.replace(/_/g, '-').toLowerCase();
+
+    const preferredVoice = this.voices.find((voice) => {
+      const voiceLang = normalize(voice.lang);
+      const targetLang = normalize(lang);
+
+      return voiceLang.startsWith(targetLang.split('-')[0]); // match 'en', 'es'
+    });
+
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    } else {
+      utterance.lang = lang; // fallback al idioma si no hay voz
+      console.warn(`No se encontró voz exacta para "${lang}". Se usará la predeterminada del sistema.`);
+    }
 
       utterance.rate = options.rate || 0.8;
       utterance.pitch = options.pitch || 1;
