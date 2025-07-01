@@ -29,7 +29,7 @@ export class AudioManager {
     }
   }
 
-  speakWord(text: string, options: { rate?: number; pitch?: number; volume?: number; lang?: string } = {lang: 'en-US'}): Promise<void> {
+  speakWord(text: string, options: { rate?: number; pitch?: number; volume?: number; lang?: string } = {lang: 'en'}): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this.synth) {
         reject(new Error('Speech synthesis not supported'));
@@ -41,24 +41,21 @@ export class AudioManager {
       console.log(text);
 
       const utterance = new SpeechSynthesisUtterance(text);
-    const lang = options.lang || 'en-US';
+      const lang = options.lang || 'en';
 
-    // Normalizamos el código de idioma para comparar
-    const normalize = (str: string) => str.replace(/_/g, '-').toLowerCase();
+      // Buscar cualquier voz que empiece por 'en' o 'es', etc.
+      const langPrefix = lang.slice(0, 2).toLowerCase();
 
-    const preferredVoice = this.voices.find((voice) => {
-      const voiceLang = normalize(voice.lang);
-      const targetLang = normalize(lang);
+      const preferredVoice = this.voices.find((voice) =>
+        voice.lang.toLowerCase().startsWith(langPrefix)
+      );
 
-      return voiceLang.startsWith(targetLang.split('-')[0]); // match 'en', 'es'
-    });
-
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    } else {
-      utterance.lang = lang; // fallback al idioma si no hay voz
-      console.warn(`No se encontró voz exacta para "${lang}". Se usará la predeterminada del sistema.`);
-    }
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      } else {
+        utterance.lang = lang; // al menos indicamos el idioma
+        console.warn(`⚠️ No se encontró voz para el idioma "${lang}". Usando voz por defecto.`);
+      }
 
       utterance.rate = options.rate || 0.8;
       utterance.pitch = options.pitch || 1;

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Users, BookOpen, Trophy, TrendingUp, Calendar, Award } from 'lucide-react';
 import { supabase } from '../utils/supabase';
 import { User } from '../types';
-import VoiceList from '../components/BroserLanguages';
 
 const AdminDashboard: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -81,7 +80,7 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="w-full max-w-7xl mx-auto px-4 space-y-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -95,8 +94,6 @@ const AdminDashboard: React.FC = () => {
           Supervisa el progreso de todos los estudiantes
         </p>
       </motion.div>
-
-      <VoiceList />
 
       {/* Stats Cards */}
       <motion.div
@@ -151,12 +148,13 @@ const AdminDashboard: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
+        className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-visible"
       >
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-800">Estudiantes</h2>
         </div>
 
+        {/* CONTENEDOR CON SCROLL HORIZONTAL */}
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
@@ -225,6 +223,29 @@ const AdminDashboard: React.FC = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        {/* Cards para mobile */}
+        <div className="block md:hidden space-y-4">
+          {users.map((user) => (
+            <div key={user.id} className="bg-white rounded-xl shadow-md p-4 border border-gray-200">
+              <div className="mb-2">
+                <p className="font-semibold text-gray-800">{user.name}</p>
+                <p className="text-sm text-gray-500">{user.email}</p>
+              </div>
+              <div className="text-sm text-gray-700 space-y-1">
+                <p><strong>Nivel:</strong> {user.progress?.level || 0}</p>
+                <p><strong>Lecciones:</strong> {user.progress?.completedLessons?.length || 0}/48</p>
+                <p><strong>Puntos:</strong> {user.progress?.totalPoints || 0}</p>
+                <p><strong>Racha:</strong> {user.progress?.streakDays || 0} días 🔥</p>
+                <p><strong>Último acceso:</strong> {new Date(user.lastLogin).toLocaleDateString()}</p>
+              </div>
+              <div className="mt-3 text-right">
+                <button onClick={() => setSelectedUser(user)} className="text-blue-600 font-medium hover:underline text-sm">
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </motion.div>
 

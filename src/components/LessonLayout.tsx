@@ -101,7 +101,7 @@ const LessonLayout: React.FC<LessonLayoutProps> = ({ lesson, onComplete }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className="bg-white rounded-xl shadow-lg border border-gray-200 p-6"
+          className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 md:p-6 w-full md:max-w-[350px]"
         >
           <h2 className="text-xl font-bold text-gray-800 mb-4">{section.title}</h2>
           <p className="text-gray-700 leading-relaxed mb-4">{section.content}</p>
@@ -272,7 +272,7 @@ const LessonLayout: React.FC<LessonLayoutProps> = ({ lesson, onComplete }) => {
             className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             <ArrowLeft size={16} />
-            <span>Anterior</span>
+            <span className="hidden md:block text-sm">Anterior</span>
           </button>
 
           {currentVocabIndex === lesson.vocabulary.length - 1 ? (
@@ -280,7 +280,7 @@ const LessonLayout: React.FC<LessonLayoutProps> = ({ lesson, onComplete }) => {
               onClick={() => setCurrentStage('quiz')}
               className="flex items-center space-x-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
             >
-              <span>Ir al Quiz</span>
+              <span className="hidden md:block text-sm">Ir al Quiz</span>
               <Play size={16} />
             </button>
           ) : (

@@ -4,8 +4,10 @@ import { ChevronLeft, ChevronRight, Volume2, BookOpen } from 'lucide-react';
 import { vowelPhonemes, consonantSounds } from '../data/phoneticsData';
 import PhoneticSymbol from '../components/PhoneticSymbol';
 import { ProgressManager } from '../utils/progressUtils';
+import { useNavigate } from 'react-router-dom';
 
 const PhoneticsLesson: React.FC = () => {
+  const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState<'vowels' | 'consonants'>('vowels');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showDetails, setShowDetails] = useState(true);
@@ -33,6 +35,7 @@ const PhoneticsLesson: React.FC = () => {
 
   const handleComplete = () => {
     ProgressManager.updateLessonProgress('phonetics-lesson-1', 100);
+    navigate('/lessons');
   };
 
   return (
@@ -59,9 +62,9 @@ const PhoneticsLesson: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white rounded-xl shadow-lg border border-gray-200 p-6"
+        className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 md:p-6"
       >
-        <div className="flex items-center justify-center space-x-4 mb-6">
+        <div className="flex items-center justify-center space-x-2 md:space-x-4 mb-6">
           <button
             onClick={() => {
               setCurrentSection('vowels');
@@ -73,7 +76,7 @@ const PhoneticsLesson: React.FC = () => {
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            Vocales ({vowelPhonemes.length})
+            {`Vocales (${vowelPhonemes.length})`}
           </button>
           <button
             onClick={() => {
@@ -86,7 +89,7 @@ const PhoneticsLesson: React.FC = () => {
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            Consonantes ({consonantSounds.length})
+            {`Consonantes (${consonantSounds.length})`}
           </button>
         </div>
 
@@ -118,12 +121,12 @@ const PhoneticsLesson: React.FC = () => {
             className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             <ChevronLeft size={20} />
-            <span>Anterior</span>
+            <span className="hidden md:block text-sm">Anterior</span>
           </button>
 
           <div className="flex items-center space-x-2">
             <Volume2 className="text-blue-500" size={20} />
-            <span className="text-sm text-gray-600">
+            <span className="text-xs md:text-sm text-gray-600">
               Haz clic en las palabras para escuchar
             </span>
           </div>
@@ -133,7 +136,7 @@ const PhoneticsLesson: React.FC = () => {
             disabled={currentSection === 'consonants' && currentIndex === currentData.length - 1}
             className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            <span>Siguiente</span>
+            <span className="hidden md:block text-sm">Siguiente</span>
             <ChevronRight size={20} />
           </button>
         </div>

@@ -255,8 +255,8 @@ const LessonContent: React.FC<LessonContentProps> = ({
           <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
             {lesson.title}
             {isCompleted && (
-              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                ✓ Completada
+              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full ">
+                ✓ <span className="collapse">Completada</span>
               </span>
             )}
           </h3>

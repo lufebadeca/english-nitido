@@ -10,7 +10,7 @@ const Navigation: React.FC = () => {
 
   const navItems = [
     { path: '/', icon: Home, label: 'Inicio' },
-    { path: '/assessment', icon: CheckCircle, label: 'Evaluación' },
+    //{ path: '/assessment', icon: CheckCircle, label: 'Evaluación' },
     { path: '/lessons', icon: BookOpen, label: 'Lecciones' },
     { path: '/practice', icon: Volume2, label: 'Práctica' },
     { path: '/achievements', icon: Trophy, label: 'Logros' },
