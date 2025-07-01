@@ -56,6 +56,28 @@ const HomePage: React.FC = () => {
         </p>
       </motion.div>
 
+      {/* Getting Started */}
+      {progress.completedLessons.length === 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-lg p-8 text-white text-center"
+        >
+          <Trophy size={48} className="mx-auto mb-4 opacity-90" />
+          <h2 className="text-2xl font-bold mb-4">¡Comienza tu aventura!</h2>
+          <p className="text-blue-100 mb-6">
+            Realiza nuestra evaluación inicial para personalizar tu experiencia de aprendizaje
+          </p>
+          <Link
+            to="/assessment"
+            className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-200"
+          >
+            Iniciar Evaluación
+          </Link>
+        </motion.div>
+      )}
+
       {/* Progress Overview */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -133,27 +155,6 @@ const HomePage: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Getting Started */}
-      {progress.completedLessons.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-lg p-8 text-white text-center"
-        >
-          <Trophy size={48} className="mx-auto mb-4 opacity-90" />
-          <h2 className="text-2xl font-bold mb-4">¡Comienza tu aventura!</h2>
-          <p className="text-blue-100 mb-6">
-            Realiza nuestra evaluación inicial para personalizar tu experiencia de aprendizaje
-          </p>
-          <Link
-            to="/assessment"
-            className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-200"
-          >
-            Iniciar Evaluación
-          </Link>
-        </motion.div>
-      )}
     </div>
   );
 };
