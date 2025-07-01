@@ -8,6 +8,7 @@ export interface WordEntry {
     word: string;
     sentence: string;
   };
+  wrong: string;
   examples: string[];
   wordFamily: {en: string, es: string}[];
   difficulty: number;

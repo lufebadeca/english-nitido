@@ -13,6 +13,7 @@ export const spanishLikeWords: WordEntry[] = [
       'She works at the hospital as a nurse',
       'We visited him at the hospital yesterday'
     ],
+    wrong: 'jóspitol',
     wordFamily: [{en:'hospitalize', es:'hospitalizar'}, {en:'hospitality', es:'hospitalidad'}, {en:'hospitable', es:'hospitalario'}, {en:'inhospitable', es:'inhóspito'}, {en:'clinic', es:'clínica'}],
     difficulty: 1,
     category: 'spanish-like',
@@ -35,6 +36,7 @@ export const spanishLikeWords: WordEntry[] = [
       'Wild animals live in the forest',
       'My favorite animal is a dolphin'
     ],
+    wrong: 'ánimol',
     wordFamily: [{en:'animals', es:'animales'}, {en:'animate', es:'animar'}, {en:'animation', es:'animación'}, {en:'being', es:'ser'}, {en:'creature', es:'criatura'}, {en:'beast', es:'bestia'}, {en:'pet', es:'mascota'}],
     difficulty: 1,
     category: 'spanish-like',
@@ -52,6 +54,7 @@ export const spanishLikeWords: WordEntry[] = [
       'She has natural beauty',
       'It\'s natural to feel nervous'
     ],
+    wrong: 'natural',
     wordFamily: [{en:'nature', es:'naturaleza'}, {en:'naturally', es:'naturalmente'}, {en:'naturalist', es:'naturalista'}, {en:'unnatural', es:'extraño'}],
     difficulty: 2,
     category: 'spanish-like',
@@ -69,6 +72,7 @@ export const spanishLikeWords: WordEntry[] = [
       'We have a big family dinner every Sunday',
       'Family comes first'
     ],
+    wrong: 'fámili',
     wordFamily: [{en:'familiar', es:'familiar'}, {en:'familiarize', es:'familiarizar'}, {en:'relative', es:'pariente'}],
     difficulty: 1,
     category: 'spanish-like',
@@ -89,6 +93,7 @@ export const techWords: WordEntry[] = [
       'The download is complete',
       'I need to download this file'
     ],
+    wrong: 'dounload',
     wordFamily: [{en:'downloadable', es:'descargable'}, {en:'downloading', es:'descargando'}, {en:'downloader', es:'descargador'}],
     difficulty: 2,
     category: 'tech',
@@ -106,6 +111,7 @@ export const techWords: WordEntry[] = [
       'Live streaming is very popular',
       'The streaming quality is excellent'
     ],
+    wrong: 'estrímin',
     wordFamily: [{en:'stream', es:'transmisión'}, {en:'streamer', es:'streamer'}, {en:'streamline', es:'optimizar'}],
     difficulty: 2,
     category: 'tech',
@@ -123,6 +129,7 @@ export const techWords: WordEntry[] = [
       'The upload failed, try again',
       'Please upload your resume'
     ],
+    wrong: 'úp-load',
     wordFamily: [{en:'uploadable', es:'subible'}, {en:'uploading', es:'subiendo'}, {en:'uploader', es:'subidor'}],
     difficulty: 2,
     category: 'tech',
@@ -140,6 +147,7 @@ export const techWords: WordEntry[] = [
       'The hashtag went viral',
       'Add relevant hashtags to increase visibility'
     ],
+    wrong: 'hashtag',
     wordFamily: [{en:'hash', es:'hash'}, {en:'tag', es:'tag'}, {en:'tagging', es:'tagging'}],
     difficulty: 2,
     category: 'tech',
@@ -160,6 +168,7 @@ export const commonVerbs: WordEntry[] = [
       'Think before you speak',
       'What do you think about this idea?'
     ],
+    wrong: 'think',
     wordFamily: [{en:'thought', es:'pensamiento'}, {en:'thinking', es:'pensando'}, {en:'thinker', es:'pensador'}, {en:'thoughtful', es:'pensativo, atento'}],
     difficulty: 2,
     category: 'common-verbs',
@@ -177,6 +186,7 @@ export const commonVerbs: WordEntry[] = [
       'I understand the problem now',
       'It\'s hard to understand his accent'
     ],
+    wrong: 'understand',
     wordFamily: [{en:'understanding', es:'entendimiento'}, {en:'understood', es:'entendido'}, {en:'understandable', es:'entendible'}],
     difficulty: 2,
     category: 'common-verbs',
@@ -194,6 +204,7 @@ export const commonVerbs: WordEntry[] = [
       'Do you believe this story?',
       'She believes in hard work'
     ],
+    wrong: 'belíf',
     wordFamily: [{en:'belief', es:'creencia'}, {en:'believer', es:'creyente'}, {en:'believable', es:'creíble'}, {en:'unbelievable', es:'increible'}, {en:'faith', es:'fe'}],
     difficulty: 2,
     category: 'common-verbs',
@@ -211,6 +222,7 @@ export const commonVerbs: WordEntry[] = [
       'Please remember to call me',
       'Do you remember this song?'
     ],
+    wrong: 'remember',
     wordFamily: [{en:'memory', es:'memoria'}, {en:'memorable', es:'memorable'}, {en:'remembrance', es:'conmemoración'}],
     difficulty: 2,
     category: 'common-verbs',
@@ -231,6 +243,7 @@ export const animeMarvelWords: WordEntry[] = [
       'Every superhero has a weakness',
       'She dreams of being a superhero'
     ],
+    wrong: 'superjero',
     wordFamily: [{en:'super', es:'super'}, {en:'hero', es:'heroe'}, {en:'heroic', es:'heroico'}, {en:'heroism', es:'heroísmo'}],
     difficulty: 2,
     category: 'anime-marvel',
@@ -248,6 +261,7 @@ export const animeMarvelWords: WordEntry[] = [
       'Every story needs a good villain',
       'Thanos is a powerful villain'
     ],
+    wrong: 'villáin',
     wordFamily: [{en:'villainous', es:'villano'}, {en:'villainy', es:'villanía'}, {en:'foe', es:'enemigo'}, {en:'boss', es:'jefe'}],
     difficulty: 2,
     category: 'anime-marvel',
@@ -265,6 +279,7 @@ export const animeMarvelWords: WordEntry[] = [
       'With great power comes great responsibility',
       'The power went out during the storm'
     ],
+    wrong: 'pówer',
     wordFamily: [{en:'powerful', es:'poderoso'}, {en:'powerless', es:'sin poder'}, {en:'empower', es:'empoderar'}, {en:'fighter', es:'luchador'}, {en:'fight', es:'luchar'}],
     difficulty: 1,
     category: 'anime-marvel',
@@ -282,6 +297,7 @@ export const animeMarvelWords: WordEntry[] = [
       'His transformation into a hero was gradual',
       'The magical transformation surprised everyone'
     ],
+    wrong: 'transformeichon',
     wordFamily: [{en:'transform', es:'transformar'}, {en:'transformer', es:'transformador'}, {en:'transformation', es:'transformación'}],
     difficulty: 3,
     category: 'anime-marvel',
@@ -302,6 +318,7 @@ export const adjectiveWords: WordEntry[] = [
       'The sunset is beautiful tonight',
       'What a beautiful song!'
     ],
+    wrong: 'beutiful',
     wordFamily: [{en:'beauty', es:'hermosura'}, {en:'beautifully', es:'hermosamente'}, {en:'handsome', es:'guapo'}, {en:'good-looking', es:'bonito'}, {en:'cute', es:'lindo'}],
     difficulty: 2,
     category: 'adjectives',
@@ -319,6 +336,7 @@ export const adjectiveWords: WordEntry[] = [
       'That was an intelligent decision',
       'Dolphins are intelligent animals'
     ],
+    wrong: 'intéligent',
     wordFamily: [{en:'intelligence', es:'inteligencia (IQ)'}, {en:'smart', es:'inteligente, hábil'}, {en:'clever', es:'listo'}, {en:'wise', es:'sabio'} ],
     difficulty: 2,
     category: 'adjectives',
@@ -336,6 +354,7 @@ export const adjectiveWords: WordEntry[] = [
       'I feel comfortable here',
       'Wear comfortable shoes for walking'
     ],
+    wrong: 'comfortabel',
     wordFamily: [{en:'comfort', es:'comodidad'}, {en:'comfortably', es:'cómodamente'}, {en:'uncomfortable', es:'incómodo/a'}],
     difficulty: 2,
     category: 'adjectives',
@@ -353,6 +372,7 @@ export const adjectiveWords: WordEntry[] = [
       'Swimming here is dangerous',
       'He has a dangerous job'
     ],
+    wrong: 'dányerous',
     wordFamily: [{en:'danger', es:'peligro'}, {en:'dangerously', es:'peligrosamente'}, {en:'endanger', es:'poner en peligro'}, {en:'risk', es:'riesgo'}, {en:'risky', es:'arriesgado'} ],
     difficulty: 2,
     category: 'adjectives',
@@ -373,6 +393,7 @@ export const connectorWords: WordEntry[] = [
       'The weather was bad. However, we had fun',
       'It\'s expensive. However, it\'s worth it'
     ],
+    wrong: 'jauever',
     wordFamily: [{en:'how', es:'cómo'}, {en:'ever', es:'cualquier'}, {en:'whatever', es:'cualquier cosa'}, {en: 'wherever', es: 'cualquier lugar'}, {en: 'whenever', es: 'cualquier momento'}],
     difficulty: 2,
     category: 'connectors',
@@ -390,6 +411,7 @@ export const connectorWords: WordEntry[] = [
       'He studied hard. Therefore, he passed',
       'The store is closed. Therefore, we can\'t buy anything'
     ],
+    wrong: 'terefore',
     wordFamily: [{en:'there', es:'allá'}, {en:'fore', es:'ante'}, {en:'before', es:'antes'}],
     difficulty: 2,
     category: 'connectors',
@@ -407,6 +429,7 @@ export const connectorWords: WordEntry[] = [
       'She smiled although she was sad',
       'Although he\'s young, he\'s very wise'
     ],
+    wrong: 'altoug',
     wordFamily: [{en:'all', es:'todos'}, {en:'though', es:'aunque'}, {en:'through', es:'a través de'}],
     difficulty: 2,
     category: 'connectors',
@@ -424,6 +447,7 @@ export const connectorWords: WordEntry[] = [
       'He\'s smart. Furthermore, he\'s hardworking',
       'The food is good. Furthermore, the service is excellent'
     ],
+    wrong: 'furthermore',
     wordFamily: [{en:'further', es:'más'}, {en:'more', es:'más'}, {en:'moreover', es:'además'}],
     difficulty: 3,
     category: 'connectors',

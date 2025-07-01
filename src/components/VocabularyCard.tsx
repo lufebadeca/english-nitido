@@ -19,7 +19,20 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
   const [selectedExample, setSelectedExample] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const [hoveredFamilyWord, setHoveredFamilyWord] = useState<{ en: string; es: string; } | null>(null);
+  const [hoveredAlert, setHoveredAlert] = useState<{ en: string; es: string; } | null>(null);
 
+  const playFakeWord = async () => {
+    console.log(word.wrong);
+    setIsPlaying(true);
+    try {
+      await audioManager.speakWord(word.wrong, {lang: 'es'});
+    } catch (error) {
+      console.error('Error playing audio:', error);
+    } finally {
+      setIsPlaying(false);
+    }
+  };
+  
   const playWord = async () => {
     setIsPlaying(true);
     try {
@@ -117,6 +130,36 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
               {showTranslation ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
           )}
+
+          <button
+            onClick={playFakeWord}
+            disabled={isPlaying}
+            className="flex items-center space-x-2 px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:opacity-50 transition-colors duration-200"
+            onMouseEnter={() => setHoveredAlert(word)}
+            onMouseLeave={() => setHoveredAlert(null)}
+          >
+            {isPlaying ? (
+              <motion.div
+                className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+            ) : (
+              <Volume2 size={16} />
+            )}
+            <span className="font-semibold">{word.en}</span>
+          {hoveredAlert && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute bottom-full left-1/4 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap z-10"
+            >
+              Nota la diferencia y trata de no pronunciar así
+              <div className="absolute top-full left-1/4 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+            </motion.div>
+          )}
+          </button>
+
         </div>
 
         <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(word.difficulty)}`}>

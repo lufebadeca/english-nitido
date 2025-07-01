@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Play, Award, ArrowRight, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { BookOpen, Play, Award, ArrowRight, ArrowLeft, Eye, EyeOff, Volume2, X } from 'lucide-react';
 import { Lesson, QuizAnswer } from '../types';
 import VocabularyCard from './VocabularyCard';
 import QuizComponent from './QuizComponent';
@@ -39,19 +39,21 @@ const ExampleCard: React.FC<ExampleCardProps> = ({example}) => {
 
   return (
     <div className="bg-blue-50 rounded-lg p-4">
-      <li className="text-blue-700 flex items-center mr-2 space-x-2 cursor-pointer">
-        <span onClick={() => playExample(example.correct)}>• {example.correct}</span>
+      <li className="text-blue-700 flex items-center mr-2 space-x-2">
+        <span className="flex items-center space-x-2">
+          <Volume2 size={16} className="text-blue-500 mr-2 cursor-pointer" onClick={() => playExample(example.correct)}/> {example.correct}
+        </span>
         {isTranslationVisible && <EyeOff size={16} onClick={() => setIsTranslationVisible(!isTranslationVisible)} className="text-green-500 ml-2 cursor-pointer"></EyeOff>}
         {!isTranslationVisible && <Eye size={16} onClick={() => setIsTranslationVisible(!isTranslationVisible)} className="text-green-500 ml-2 cursor-pointer"></Eye>}
       </li>
       {isTranslationVisible && (
         <>
         <li className="text-green-500 my-2">{example.translation} </li>
-        <li className="text-blue-600 text-xs my-2">{example.explanation} </li>
+        <li className="text-blue-600 text-xs my-2">💡 {example.explanation} </li>
         </>
       )}
       {(example.incorrect && !isTranslationVisible) &&
-        <li className="text-red-300 line-through my-2">• {example.incorrect} </li>}
+        <li className="text-red-400 text-sm my-2 flex items-center gap-2">Incorrect: <span className="line-through">{example.incorrect}</span> </li>}
     </div>
   );
 };

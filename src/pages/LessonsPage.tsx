@@ -14,7 +14,7 @@ const LessonsPage: React.FC = () => {
       description: 'Aprende los 16 sonidos vocálicos y consonantes esenciales',
       icon: Volume2,
       difficulty: 1,
-      duration: '30 min',
+      duration: '20 min',
       points: 100,
       isUnlocked: true,
       path: '/lesson/phonetics'
@@ -24,8 +24,8 @@ const LessonsPage: React.FC = () => {
       title: 'Gramática Básica del Inglés',
       description: 'Domina las reglas fundamentales: artículos, presente simple y orden de palabras',
       icon: BookOpen,
-      difficulty: 2,
-      duration: '40 min',
+      difficulty: 1,
+      duration: '10 min',
       points: 120,
       isUnlocked: progress.completedLessons.includes('phonetics-lesson-1'),
       path: '/lesson/basic-grammar'
@@ -42,12 +42,23 @@ const LessonsPage: React.FC = () => {
       path: '/lesson/spanish-like-words'
     },
     {
+      id: 'basic-grammar-2',
+      title: 'Gramática Básica del Inglés nivel 2',
+      description: 'Introducción a las reglas fundamentales: verbo To Be, adjetivos y adverbios',
+      icon: BookOpen,
+      difficulty: 2,
+      duration: '15 min',
+      points: 120,
+      isUnlocked: progress.completedLessons.includes('basic-grammar'),
+      path: '/lesson/basic-grammar-2'
+    },
+    {
       id: 'tech-vocabulary',
       title: 'Vocabulario Tecnológico',
       description: 'Términos de tecnología y redes sociales para el mundo digital',
       icon: Code,
       difficulty: 2,
-      duration: '30 min',
+      duration: '20 min',
       points: 150,
       isUnlocked: progress.completedLessons.includes('spanish-like-words'),
       path: '/lesson/tech-vocabulary'
@@ -58,7 +69,7 @@ const LessonsPage: React.FC = () => {
       description: 'Domina el uso del verbo to be en inglés, el cual es un verbo irregular.',
       icon: User,
       difficulty: 2,
-      duration: '45 min',
+      duration: '25 min',
       points: 200,
       isUnlocked: progress.completedLessons.includes('basic-grammar'),
       path: '/lesson/to-be-verb'
@@ -69,7 +80,7 @@ const LessonsPage: React.FC = () => {
       description: 'Domina los verbos más utilizados en el inglés cotidiano',
       icon: Zap,
       difficulty: 2,
-      duration: '45 min',
+      duration: '35 min',
       points: 200,
       isUnlocked: progress.completedLessons.includes('basic-grammar'),
       path: '/lesson/common-verbs'
@@ -80,7 +91,7 @@ const LessonsPage: React.FC = () => {
       description: 'Aprende los adjetivos más importantes para describir personas, lugares y cosas',
       icon: Star,
       difficulty: 2,
-      duration: '35 min',
+      duration: '25 min',
       points: 180,
       isUnlocked: progress.completedLessons.includes('common-verbs'),
       path: '/lesson/adjectives-vocabulary'
@@ -91,7 +102,7 @@ const LessonsPage: React.FC = () => {
       description: 'Aprende a conectar ideas y crear textos más fluidos y coherentes',
       icon: LinkIcon,
       difficulty: 3,
-      duration: '40 min',
+      duration: '25 min',
       points: 220,
       isUnlocked: progress.completedLessons.includes('adjectives-vocabulary'),
       path: '/lesson/connectors-vocabulary'
@@ -102,7 +113,7 @@ const LessonsPage: React.FC = () => {
       description: 'Técnicas de memoria para recordar vocabulario difícil',
       icon: Brain,
       difficulty: 3,
-      duration: '35 min',
+      duration: '25 min',
       points: 180,
       isUnlocked: progress.completedLessons.includes('tech-vocabulary'),
       path: '/mnemonics'

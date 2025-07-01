@@ -113,7 +113,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
       'She is work at a hospital'
     ],
     correctAnswer: 'She works at a hospital',
-    explanation: 'Present simple with third person singular requires "s" at the end of the verb',
+    explanation: 'El presente simple con tercera persona singular requiere "s" al final del verbo',
     points: 10
   },
   {
@@ -146,7 +146,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
       'I not like coffee'
     ],
     correctAnswer: 'I don\'t like coffee',
-    explanation: 'Use "don\'t" with I/you/we/they and the base form of the verb',
+    explanation: 'Se usa "don\'t" con I/you/we/they y la forma base del verbo',
     points: 10
   },
   {
@@ -156,7 +156,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
     correctAnswer: 'The',
     sentence: 'The book on the table is very interesting.',
     hint: 'We\'re talking about a specific book',
-    explanation: 'Use "the" when referring to something specific',
+    explanation: 'Se usa "the" cuando se refiere a algo específico',
     points: 10
   }
 ];
@@ -174,23 +174,23 @@ export const grammarLessonsData: Lesson = {
   informativeContent: [
     {
       id: 'grammar-intro',
-      title: 'Fundamentos de la Gramática Inglesa',
-      content: 'La gramática inglesa tiene reglas específicas que difieren del español. Dominar estas bases te ayudará a construir oraciones correctas y naturales.',
+      title: 'Fundamentos de la Gramática Inglesa nivel 2',
+      content: 'Aprende los patrones mas repetitivos de la gramática es crucial para poder comunicarte en el idioma. El verbo to be es el verbo más importante del inglés. Aprende ademas a usar los adjetivos y adverbios.',
       tips: [
-        'El orden de palabras es más rígido que en español',
-        'Los artículos son obligatorios en muchos casos',
-        'Los verbos cambian según la persona en presente simple'
+        'En ingles no existen palabras separadas para "ser" y "estar": ambas son traducidas con el verbo "to be"',
+        'Los adjetivos en ingles van antes del sustantivo, cuidado con el orden.',
+        'Los adjetivos y adverbios en ingles no van en plural, a diferencia del español.'
       ],
       examples: [
-        'I am a student (Soy estudiante) - necesita artículo "a"',
-        'The teachers are very kind (Los maestros son muy amables) - verbo sin "s"',
-        'She speaks English (Ella habla inglés) - verbo con "s"',
-        'The book is red (El libro es rojo) - orden fijo'
+        'She is a business woman - ella es una mujer de negocios',
+        'The black cat - el gato negro, pero black va antes de cat',
+        'The fans are very loud',
+        'My English is pretty bad - tanto pretty como bad son adverbios que describen como es la situacion'
       ]
     }
   ],
   quiz: grammarQuizQuestions,
-  achievements: ['grammar-guru']
+  achievements: ['grammar-enthusiast']
 };
 
 // To Be Verb
