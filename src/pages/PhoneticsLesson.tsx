@@ -124,9 +124,9 @@ const PhoneticsLesson: React.FC = () => {
             <span className="hidden md:block text-sm">Anterior</span>
           </button>
 
-          <div className="flex items-center space-x-2">
-            <Volume2 className="text-blue-500" size={20} />
-            <span className="text-xs md:text-sm text-gray-600">
+          <div className="flex items-center justify-items-start p-2 text-center">
+            <Volume2 className="text-blue-500 text-sm md:pr-2" size={20} />
+            <span className="text-xs md:text-sm text-gray-600 ">
               Haz clic en las palabras para escuchar
             </span>
           </div>

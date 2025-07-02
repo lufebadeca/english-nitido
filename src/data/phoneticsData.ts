@@ -129,8 +129,10 @@ export const consonantSounds = [
     ipa: '/θ/',
     description: 'Sonido "th" sordo - lengua entre los dientes',
     examples: ['think', 'three', 'month', 'math'],
+    position: 'consonant',
     difficulty: 3,
-    position: 'consonant'
+    mouthPosition: 'Boca semi-cerrada',
+    tonguePosition: 'Lengua tocando los dientes de arriba'
   },
   {
     symbol: 'ð',
@@ -138,7 +140,9 @@ export const consonantSounds = [
     description: 'Sonido "th" sonoro - lengua entre los dientes',
     examples: ['this', 'that', 'weather', 'brother'],
     difficulty: 3,
-    position: 'consonant'
+    position: 'consonant',
+    mouthPosition: 'Boca semi-cerrada',
+    tonguePosition: 'Lengua tocando los dientes de arriba'
   },
   {
     symbol: 'ʃ',
@@ -146,15 +150,19 @@ export const consonantSounds = [
     description: 'Sonido "sh" - similar a "ch" suave en español',
     examples: ['ship', 'shoe', 'fish', 'wash'],
     difficulty: 2,
-    position: 'consonant'
+    position: 'consonant',
+    mouthPosition: 'dientes cerrados, labios abiertos',
+    tonguePosition: 'Lengua tocando el paladar'
   },
   {
     symbol: 'ʒ',
     ipa: '/ʒ/',
-    description: 'Sonido "zh" - versión sonora de /ʃ/',
+    description: 'Sonido "zh" - versión sonora de /ʃ/ (con vibración)',
     examples: ['pleasure', 'measure', 'vision', 'garage'],
     difficulty: 3,
-    position: 'consonant'
+    position: 'consonant',
+    mouthPosition: 'dientes cerrados, labios abiertos',
+    tonguePosition: 'Lengua tocando el paladar'
   },
   {
     symbol: 'tʃ',
@@ -162,7 +170,9 @@ export const consonantSounds = [
     description: 'Sonido "ch" - similar al español pero más aspirado',
     examples: ['chair', 'teach', 'watch', 'chicken'],
     difficulty: 1,
-    position: 'consonant'
+    position: 'consonant',
+    mouthPosition: 'dientes cerrados, labios abiertos',
+    tonguePosition: 'Lengua tocando el paladar'
   },
   {
     symbol: 'dʒ',
@@ -170,6 +180,8 @@ export const consonantSounds = [
     description: 'Sonido "j" - como "y" argentina en "yo"',
     examples: ['jump', 'bridge', 'age', 'judge'],
     difficulty: 2,
-    position: 'consonant'
+    position: 'consonant',
+    mouthPosition: 'dientes cerrados, labios abiertos',
+    tonguePosition: 'Lengua tocando el paladar'
   }
 ];

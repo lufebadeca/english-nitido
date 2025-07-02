@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Users, BookOpen, Trophy, TrendingUp, Calendar, Award } from 'lucide-react';
 import { supabase } from '../utils/supabase';
 import { User } from '../types';
+import BroserLanguages from '../components/BroserLanguages';
 
 const AdminDashboard: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -20,8 +21,18 @@ const AdminDashboard: React.FC = () => {
         .select('*')
         .eq('role', 'student')
         .order('created_at', { ascending: false });
-
-      if (error) throw error;
+  
+      if (error) {
+        console.error('Error loading users:', error);
+        // Show error message to user
+        throw new Error('Failed to load user data');
+      }
+  
+      if (!data || data.length === 0) {
+        // Handle empty data case
+        throw new Error('No users found');
+      }
+  
 
       setUsers(data.map(user => ({
         id: user.id,
@@ -154,8 +165,8 @@ const AdminDashboard: React.FC = () => {
           <h2 className="text-xl font-bold text-gray-800">Estudiantes</h2>
         </div>
 
-        {/* CONTENEDOR CON SCROLL HORIZONTAL */}
-        <div className="overflow-x-auto">
+        {/* CONTENEDOR CON TABLA */}
+        <div className="block md:hidden overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -336,6 +347,8 @@ const AdminDashboard: React.FC = () => {
           </motion.div>
         </div>
       )}
+
+      <BroserLanguages />
     </div>
   );
 };

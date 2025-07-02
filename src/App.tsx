@@ -12,6 +12,7 @@ import AssessmentPage from './pages/AssessmentPage';
 import MnemonicsPage from './pages/MnemonicsPage';
 import AdminDashboard from './pages/AdminDashboard';
 import Profile from './pages/Profile';
+import Achievements from './pages/Achievements';
 
 // Loading component
 const LoadingSpinner = () => (
@@ -75,7 +76,7 @@ const AppContent: React.FC = () => {
             <Route path="practice" element={<PracticePage />} />
             <Route path="assessment" element={<AssessmentPage />} />
             <Route path="mnemonics" element={<MnemonicsPage />} />
-            <Route path="achievements" element={<div className="text-center py-12"><h2 className="text-2xl font-bold text-gray-600">Logros - Próximamente</h2></div>} />
+            <Route path="achievements" element={<Achievements />} />
             <Route path="profile" element={<Profile />} />
             
             {/* Admin Routes */}

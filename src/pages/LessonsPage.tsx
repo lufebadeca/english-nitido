@@ -255,8 +255,8 @@ const LessonContent: React.FC<LessonContentProps> = ({
           <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
             {lesson.title}
             {isCompleted && (
-              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full ">
-                ✓ <span className="collapse">Completada</span>
+              <span className="bg-green-500 text-white text-xs text-center px-2 py-1 rounded-full ">
+                ✓ <span >Completada</span>
               </span>
             )}
           </h3>
@@ -281,7 +281,7 @@ const LessonContent: React.FC<LessonContentProps> = ({
 
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4 text-sm text-gray-600">
-          <span className={`px-2 py-1 rounded-full border text-xs font-medium ${getDifficultyColor(lesson.difficulty)}`}>
+          <span className={`px-2 py-1 rounded-full border text-xs font-medium text-center ${getDifficultyColor(lesson.difficulty)}`}>
             Nivel {lesson.difficulty}
           </span>
           <span>⏱️ {lesson.duration}</span>

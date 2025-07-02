@@ -56,7 +56,7 @@ export class AudioManager {
         utterance.lang = lang; // al menos indicamos el idioma
         console.warn(`⚠️ No se encontró voz para el idioma "${lang}". Usando voz por defecto.`);
       }
-
+      alert(`${utterance.voice?.name} (${utterance.voice?.lang})`);
       utterance.rate = options.rate || 0.8;
       utterance.pitch = options.pitch || 1;
       utterance.volume = options.volume || 1;
