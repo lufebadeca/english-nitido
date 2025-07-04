@@ -141,7 +141,7 @@ export const placementTestQuestions: AssessmentQuestion[] = [
   {
     id: 'vocab-18',
     type: 'vocabulary',
-    question: 'What does "owledge" mean?',
+    question: 'What does "knowledge" mean?',
     options: ['ignorancia', 'conocimiento', 'experiencia', 'sabiduría'],
     correctAnswer: 'conocimiento',
     difficulty: 3
@@ -243,5 +243,48 @@ export const placementTestQuestions: AssessmentQuestion[] = [
     options: ['will', 'would', 'can', 'could'],
     correctAnswer: 'would',
     difficulty: 3
+  },
+  /*{
+    id: 'listening-1',
+    type: 'audio-multiple-choice',
+    question: 'Listen to the word and choose the correct transtation:',
+    options: ['tough', 'thought', 'though', 'through'],
+    correctAnswer: 'thought',
+    audioUrl: 'thought',
+    difficulty: 3
+  },
+  {
+    id: 'listening-2',
+    type: 'audio-multiple-choice',
+    question: 'Listen to the word and choose the correct transtation:',
+    options: ['desert', 'dessert', 'deserve', 'deserted'],
+    correctAnswer: 'desert',
+    audioUrl: 'desert',
+    difficulty: 3
+  },
+  {
+    id: 'sl-1',
+    type: 'audio-type',
+    question: 'Escucha la palabra y escríbela:',
+    correctAnswer: 'comfortable',
+    audioUrl: 'comfortable',
+    difficulty: 3
+  },
+  {
+    id: 'sl-1',
+    type: 'audio-type',
+    question: 'Escucha la palabra y escríbela:',
+    correctAnswer: 'dangerous',
+    audioUrl: 'dangerous',
+    difficulty: 3
+  },
+  {
+    id: 'sl-1',
+    type: 'audio-type',
+    question: 'Escucha la palabra y escríbela:',
+    correctAnswer: 'identical',
+    audioUrl: 'identical',
+    difficulty: 3
   }
+    */
 ];

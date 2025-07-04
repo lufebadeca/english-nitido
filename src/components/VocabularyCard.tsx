@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Volume2, Play, Eye, EyeOff, BookOpen, Users, Image } from 'lucide-react';
-import { WordEntry } from '../types';
-import { audioManager } from '../utils/audioUtils';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Volume2,
+  Play,
+  Eye,
+  EyeOff,
+  BookOpen,
+  Users,
+  Image,
+  XSquare,
+  XOctagon,
+  XCircle,
+  XCircleIcon,
+} from "lucide-react";
+import { WordEntry } from "../types";
+import { audioManager } from "../utils/audioUtils";
 
 interface VocabularyCardProps {
   word: WordEntry;
@@ -10,35 +22,41 @@ interface VocabularyCardProps {
   onToggleTranslation?: () => void;
 }
 
-const VocabularyCard: React.FC<VocabularyCardProps> = ({ 
-  word, 
+const VocabularyCard: React.FC<VocabularyCardProps> = ({
+  word,
   showTranslation = true,
-  onToggleTranslation 
+  onToggleTranslation,
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedExample, setSelectedExample] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [hoveredFamilyWord, setHoveredFamilyWord] = useState<{ en: string; es: string; } | null>(null);
-  const [hoveredAlert, setHoveredAlert] = useState<{ en: string; es: string; } | null>(null);
+  const [hoveredFamilyWord, setHoveredFamilyWord] = useState<{
+    en: string;
+    es: string;
+  } | null>(null);
+  const [hoveredAlert, setHoveredAlert] = useState<{
+    en: string;
+    es: string;
+  } | null>(null);
 
   const playFakeWord = async () => {
     console.log(word.wrong);
     setIsPlaying(true);
     try {
-      await audioManager.speakWord(word.wrong, {lang: 'es'});
+      await audioManager.speakWord(word.wrong, { lang: "es" });
     } catch (error) {
-      console.error('Error playing audio:', error);
+      console.error("Error playing audio:", error);
     } finally {
       setIsPlaying(false);
     }
   };
-  
+
   const playWord = async () => {
     setIsPlaying(true);
     try {
       await audioManager.speakWord(word.en);
     } catch (error) {
-      console.error('Error playing audio:', error);
+      console.error("Error playing audio:", error);
     } finally {
       setIsPlaying(false);
     }
@@ -50,7 +68,7 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
     try {
       await audioManager.speakSentence(example);
     } catch (error) {
-      console.error('Error playing audio:', error);
+      console.error("Error playing audio:", error);
     } finally {
       setIsPlaying(false);
       setSelectedExample(null);
@@ -61,37 +79,56 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
     try {
       await audioManager.speakWord(familyWord);
     } catch (error) {
-      console.error('Error playing audio:', error);
+      console.error("Error playing audio:", error);
     }
   };
 
   const getDifficultyColor = (difficulty: number) => {
     switch (difficulty) {
-      case 1: return 'bg-green-100 text-green-800 border-green-300';
-      case 2: return 'bg-yellow-100 text-yellow-800 border-yellow-300';
-      case 3: return 'bg-red-100 text-red-800 border-red-300';
-      default: return 'bg-gray-100 text-gray-800 border-gray-300';
+      case 1:
+        return "bg-green-100 text-green-800 border-green-300";
+      case 2:
+        return "bg-yellow-100 text-yellow-800 border-yellow-300";
+      case 3:
+        return "bg-red-100 text-red-800 border-red-300";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-300";
     }
   };
 
   // Get word image from Pexels (placeholder URLs)
   const getWordImage = (word: string) => {
     const imageMap: { [key: string]: string } = {
-      'hospital': 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'animal': 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'natural': 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'family': 'https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'download': 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'streaming': 'https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'upload': 'https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'hashtag': 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'think': 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'understand': 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'believe': 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=300',
-      'remember': 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=300'
+      hospital:
+        "https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=300",
+      animal:
+        "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=300",
+      natural:
+        "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300",
+      family:
+        "https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=300",
+      download:
+        "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=300",
+      streaming:
+        "https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&w=300",
+      upload:
+        "https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?auto=compress&cs=tinysrgb&w=300",
+      hashtag:
+        "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=300",
+      think:
+        "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=300",
+      understand:
+        "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300",
+      believe:
+        "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=300",
+      remember:
+        "https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=300",
     };
-    
-    return imageMap[word.toLowerCase()] || `https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&w=300`;
+
+    return (
+      imageMap[word.toLowerCase()] ||
+      `https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&w=300`
+    );
   };
 
   return (
@@ -121,7 +158,7 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
             )}
             <span className="font-semibold">{word.en}</span>
           </button>
-          
+
           {onToggleTranslation && (
             <button
               onClick={onToggleTranslation}
@@ -147,22 +184,27 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
             ) : (
               <Volume2 size={16} />
             )}
-            <span className="font-semibold">{word.en}</span>
-          {hoveredAlert && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="absolute bottom-full left-1/4 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap z-10"
-            >
-              Nota la diferencia y trata de no pronunciar así
-              <div className="absolute top-full left-1/4 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
-            </motion.div>
-          )}
+            <span className="font-semibold h-6 flex items-center">
+              <XCircleIcon size={16} />
+            </span>
+            {hoveredAlert && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute bottom-full left-1/4 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap z-10"
+              >
+                Nota la diferencia y trata de no pronunciar así
+                <div className="absolute top-full left-1/4 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+              </motion.div>
+            )}
           </button>
-
         </div>
 
-        <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(word.difficulty)}`}>
+        <span
+          className={`px-3 py-1 rounded-full text-xs md:text-sm text-center font-medium border ${getDifficultyColor(
+            word.difficulty
+          )}`}
+        >
           Nivel {word.difficulty}
         </span>
       </div>
@@ -170,13 +212,16 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
       {/* Word Image */}
       <div className="mb-4 flex justify-center">
         <div className="relative group">
-          <img 
+          <img
             src={getWordImage(word.en)}
             alt={word.en}
             className="w-48 h-32 object-cover rounded-lg shadow-md"
           />
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 rounded-lg flex items-center justify-center">
-            <Image className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200" size={24} />
+            <Image
+              className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              size={24}
+            />
           </div>
         </div>
       </div>
@@ -190,9 +235,9 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
               <span
                 key={index}
                 className={`px-2 py-1 rounded text-sm ${
-                  index === word.stress 
-                    ? 'bg-orange-100 text-orange-800 font-bold' 
-                    : 'bg-gray-100 text-gray-600'
+                  index === word.stress
+                    ? "bg-orange-100 text-orange-800 font-bold"
+                    : "bg-gray-100 text-gray-600"
                 }`}
               >
                 {syllable}
@@ -207,12 +252,16 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
             {word.regionalVariants && (
               <div className="mt-2 text-sm text-blue-600">
                 <span className="font-medium">Variantes: </span>
-                {Object.entries(word.regionalVariants).map(([region, variant], index) => (
-                  <span key={region}>
-                    {region}: {variant}
-                    {index < Object.entries(word.regionalVariants!).length - 1 && ', '}
-                  </span>
-                ))}
+                {Object.entries(word.regionalVariants).map(
+                  ([region, variant], index) => (
+                    <span key={region}>
+                      {region}: {variant}
+                      {index <
+                        Object.entries(word.regionalVariants!).length - 1 &&
+                        ", "}
+                    </span>
+                  )
+                )}
               </div>
             )}
           </div>
@@ -222,7 +271,9 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
       {/* Mnemonic */}
       {word.mnemonic && (
         <div className="bg-purple-50 rounded-lg p-3 mb-4">
-          <h4 className="font-semibold text-purple-800 mb-1">💡 Truco de memoria:</h4>
+          <h4 className="font-semibold text-purple-800 mb-1">
+            💡 Truco de memoria:
+          </h4>
           <p className="text-purple-700 text-sm">{word.mnemonic}</p>
         </div>
       )}
@@ -233,40 +284,49 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
           <BookOpen size={18} />
           Ejemplos:
         </h4>
-        
+
         <div className="space-y-2">
-          {word.examples.slice(0, showDetails ? word.examples.length : 2).map((example, index) => (
-            <motion.button
-              key={index}
-              onClick={() => playExample(example)}
-              disabled={isPlaying}
-              className={`
+          {word.examples
+            .slice(0, showDetails ? word.examples.length : 2)
+            .map((example, index) => (
+              <motion.button
+                key={index}
+                onClick={() => playExample(example)}
+                disabled={isPlaying}
+                className={`
                 w-full text-left p-3 rounded-lg border-2 transition-all duration-200
-                ${selectedExample === example 
-                  ? 'border-blue-500 bg-blue-50' 
-                  : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50'
+                ${
+                  selectedExample === example
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
                 }
-                ${isPlaying ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
+                ${
+                  isPlaying ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+                }
               `}
-              whileHover={!isPlaying ? { scale: 1.01 } : {}}
-              whileTap={!isPlaying ? { scale: 0.99 } : {}}
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-gray-800">{example}</span>
-                <div className="flex items-center space-x-1">
-                  {selectedExample === example && isPlaying ? (
-                    <motion.div
-                      className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    />
-                  ) : (
-                    <Play size={16} className="text-blue-500" />
-                  )}
+                whileHover={!isPlaying ? { scale: 1.01 } : {}}
+                whileTap={!isPlaying ? { scale: 0.99 } : {}}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-800">{example}</span>
+                  <div className="flex items-center space-x-1">
+                    {selectedExample === example && isPlaying ? (
+                      <motion.div
+                        className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
+                    ) : (
+                      <Play size={16} className="text-blue-500" />
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.button>
-          ))}
+              </motion.button>
+            ))}
         </div>
 
         {word.examples.length > 2 && (
@@ -274,7 +334,9 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
             onClick={() => setShowDetails(!showDetails)}
             className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors duration-200"
           >
-            {showDetails ? 'Ver menos ejemplos' : `Ver ${word.examples.length - 2} ejemplos más`}
+            {showDetails
+              ? "Ver menos ejemplos"
+              : `Ver ${word.examples.length - 2} ejemplos más`}
           </button>
         )}
       </div>
@@ -300,7 +362,7 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
                 >
                   {relatedWord.en}
                 </button>
-                
+
                 {hoveredFamilyWord === relatedWord && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
