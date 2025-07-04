@@ -87,7 +87,10 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
 
   const playFamilyWord = async (familyWord: string) => {
     try {
-      await audioManager.speakWord(familyWord);
+      await audioManager.speakWord(familyWord, {
+        lang: voices[voiceIndex].lang,
+        name: voices[voiceIndex].name,
+      });
     } catch (error) {
       console.error("Error playing audio:", error);
     }
