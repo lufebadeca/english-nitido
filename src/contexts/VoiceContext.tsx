@@ -21,14 +21,39 @@ export function VoiceProvider({ children }: { children: React.ReactNode }) {
   } | null>(null);
 
   useEffect(() => {
+    const loadVoices = () => {
+      const espVoices = window.speechSynthesis
+        .getVoices()
+        .filter(
+          (voice) =>
+            voice.lang.startsWith("es-MX") ||
+            voice.lang.startsWith("es_MX") ||
+            voice.lang.startsWith("es-US") ||
+            voice.lang.startsWith("es_US") ||
+            voice.lang.startsWith("es-ES") ||
+            voice.lang.startsWith("es_ES")
+        );
+      const engVoices = window.speechSynthesis
+        .getVoices()
+        .filter(
+          (voice) =>
+            voice.lang.startsWith("en-US") || voice.lang.startsWith("en_US")
+        );
+      return { espVoices, engVoices };
+    };
+    const { espVoices, engVoices } = loadVoices();
     // Load initial voice settings from localStorage if available
     const savedEngVoice = localStorage.getItem("currentEngVoice");
     if (savedEngVoice) {
       setCurrentEngVoice(JSON.parse(savedEngVoice));
+    } else {
+      setCurrentEngVoice(engVoices[0]);
     }
     const savedEspVoice = localStorage.getItem("currentEspVoice");
     if (savedEspVoice) {
       setCurrentEspVoice(JSON.parse(savedEspVoice));
+    } else {
+      setCurrentEspVoice(espVoices[0]);
     }
   }, []);
 

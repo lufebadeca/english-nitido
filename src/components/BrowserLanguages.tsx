@@ -19,19 +19,41 @@ function VoiceList() {
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices();
 
+      // Filter English voices
       const engVoices = voices.filter(
         (voice) =>
           voice.lang.startsWith("en-US") || voice.lang.startsWith("en_US")
       );
+
       if (engVoices.length > 0) {
         setEngVoices(engVoices);
-        const engVoiceIndex = engVoices.indexOf(
+
+        // Initialize English voice if not set
+        if (!currentEngVoice) {
+          setCurrentEngVoice({
+            lang: engVoices[0].lang,
+            name: engVoices[0].name,
+          });
+        }
+
+        // Find selected voice index
+        const engVoiceIndex = engVoices.findIndex(
           (voice) => voice.name === currentEngVoice?.name
         );
-        console.log("engVoiceIndex: " + engVoiceIndex);
-        setEngVoiceIndex(engVoiceIndex);
+
+        // If voice not found, use first voice
+        if (engVoiceIndex === -1) {
+          setCurrentEngVoice({
+            lang: engVoices[0].lang,
+            name: engVoices[0].name,
+          });
+          setEngVoiceIndex(0);
+        } else {
+          setEngVoiceIndex(engVoiceIndex);
+        }
       }
 
+      // Filter Spanish voices
       const espVoices = voices.filter(
         (voice) =>
           voice.lang.startsWith("es-MX") ||
@@ -41,13 +63,33 @@ function VoiceList() {
           voice.lang.startsWith("es-ES") ||
           voice.lang.startsWith("es_ES")
       );
+
       if (espVoices.length > 0) {
         setEspVoices(espVoices);
-        const espVoiceIndex = espVoices.indexOf(
+
+        // Initialize Spanish voice if not set
+        if (!currentEspVoice) {
+          setCurrentEspVoice({
+            lang: espVoices[0].lang,
+            name: espVoices[0].name,
+          });
+        }
+
+        // Find selected voice index
+        const espVoiceIndex = espVoices.findIndex(
           (voice) => voice.name === currentEspVoice?.name
         );
-        console.log("espVoiceIndex: " + espVoiceIndex);
-        setEspVoiceIndex(espVoiceIndex);
+
+        // If voice not found, use first voice
+        if (espVoiceIndex === -1) {
+          setCurrentEspVoice({
+            lang: espVoices[0].lang,
+            name: espVoices[0].name,
+          });
+          setEspVoiceIndex(0);
+        } else {
+          setEspVoiceIndex(espVoiceIndex);
+        }
       }
     };
 
@@ -58,18 +100,22 @@ function VoiceList() {
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
-  }, []);
+  }, [currentEngVoice, currentEspVoice]);
 
   const handleEngVoiceChange = (voice: SpeechSynthesisVoice) => {
     setCurrentEngVoice({ lang: voice.lang, name: voice.name });
-    const engVoiceIndex = Number(localStorage.getItem("engVoiceIndex")) || 0;
-    setEngVoiceIndex(engVoiceIndex);
+    const selectedIndex = engVoices.findIndex((v) => v.name === voice.name);
+    if (selectedIndex !== -1) {
+      setEngVoiceIndex(selectedIndex);
+    }
   };
 
   const handleEspVoiceChange = (voice: SpeechSynthesisVoice) => {
     setCurrentEspVoice({ lang: voice.lang, name: voice.name });
-    const espVoiceIndex = Number(localStorage.getItem("espVoiceIndex")) || 0;
-    setEspVoiceIndex(espVoiceIndex);
+    const selectedIndex = espVoices.findIndex((v) => v.name === voice.name);
+    if (selectedIndex !== -1) {
+      setEspVoiceIndex(selectedIndex);
+    }
   };
 
   return (
