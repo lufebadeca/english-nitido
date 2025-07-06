@@ -22,9 +22,13 @@ export class AudioManager {
         .filter(
           (voice) =>
             voice.lang.startsWith("en-US") ||
-            voice.lang.startsWith("es-MX") ||
             voice.lang.startsWith("en_US") ||
-            voice.lang.startsWith("es_MX")
+            voice.lang.startsWith("es-MX") ||
+            voice.lang.startsWith("es_MX") ||
+            voice.lang.startsWith("es-US") ||
+            voice.lang.startsWith("es_US") ||
+            voice.lang.startsWith("es-ES") ||
+            voice.lang.startsWith("es_ES")
         );
     };
 

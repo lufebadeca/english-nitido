@@ -25,18 +25,27 @@ function VoiceList() {
       );
       if (engVoices.length > 0) {
         setEngVoices(engVoices);
-        const engVoiceIndex = engVoices.indexOf(currentEngVoice);
+        const engVoiceIndex = engVoices.indexOf(
+          (voice) => voice.name === currentEngVoice?.name
+        );
         console.log("engVoiceIndex: " + engVoiceIndex);
         setEngVoiceIndex(engVoiceIndex);
       }
 
       const espVoices = voices.filter(
         (voice) =>
-          voice.lang.startsWith("es-MX") || voice.lang.startsWith("es_MX")
+          voice.lang.startsWith("es-MX") ||
+          voice.lang.startsWith("es_MX") ||
+          voice.lang.startsWith("es-US") ||
+          voice.lang.startsWith("es_US") ||
+          voice.lang.startsWith("es-ES") ||
+          voice.lang.startsWith("es_ES")
       );
       if (espVoices.length > 0) {
         setEspVoices(espVoices);
-        const espVoiceIndex = espVoices.indexOf(currentEspVoice);
+        const espVoiceIndex = espVoices.indexOf(
+          (voice) => voice.name === currentEspVoice?.name
+        );
         console.log("espVoiceIndex: " + espVoiceIndex);
         setEspVoiceIndex(espVoiceIndex);
       }
