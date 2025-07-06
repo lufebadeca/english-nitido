@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useVoice } from "../contexts/VoiceContext";
 import { motion } from "framer-motion";
 import {
   Volume2,
@@ -27,6 +28,7 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
   showTranslation = true,
   onToggleTranslation,
 }) => {
+  const { currentEngVoice, currentEspVoice } = useVoice();
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedExample, setSelectedExample] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(false);
@@ -42,14 +44,10 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
   const playFakeWord = async () => {
     console.log(word.wrong);
     setIsPlaying(true);
-    console.log("voiceIndex", voiceIndex);
-    console.log("fake voice", voices[voiceIndex]);
-    console.log("fake lang", voices[voiceIndex].lang);
-    console.log("fake name", voices[voiceIndex].name);
     try {
       await audioManager.speakWord(word.wrong, {
-        lang: voices[voiceIndex].lang,
-        name: voices[voiceIndex].name,
+        lang: currentEspVoice?.lang,
+        name: currentEspVoice?.name,
       });
     } catch (error) {
       console.error("Error playing audio:", error);
@@ -62,8 +60,8 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
     setIsPlaying(true);
     try {
       await audioManager.speakWord(word.en, {
-        lang: voices[voiceIndex].lang,
-        name: voices[voiceIndex].name,
+        lang: currentEngVoice?.lang,
+        name: currentEngVoice?.name,
       });
     } catch (error) {
       console.error("Error playing audio:", error);
@@ -76,7 +74,10 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
     setSelectedExample(example);
     setIsPlaying(true);
     try {
-      await audioManager.speakSentence(example);
+      await audioManager.speakSentence(example, {
+        lang: currentEngVoice?.lang,
+        name: currentEngVoice?.name,
+      });
     } catch (error) {
       console.error("Error playing audio:", error);
     } finally {
@@ -88,8 +89,8 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
   const playFamilyWord = async (familyWord: string) => {
     try {
       await audioManager.speakWord(familyWord, {
-        lang: voices[voiceIndex].lang,
-        name: voices[voiceIndex].name,
+        lang: currentEngVoice?.lang,
+        name: currentEngVoice?.name,
       });
     } catch (error) {
       console.error("Error playing audio:", error);
@@ -144,23 +145,6 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
     );
   };
 
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [voiceIndex, setVoiceIndex] = useState(0);
-
-  useEffect(() => {
-    const loadVoices = () => {
-      const allVoices = window.speechSynthesis.getVoices();
-      if (allVoices.length > 0) {
-        setVoices(allVoices);
-      } else {
-        // Esperar un poco si aún no están cargadas
-        setTimeout(loadVoices, 300);
-      }
-    };
-
-    loadVoices();
-  }, []);
-
   return (
     <motion.div
       className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-all duration-300"
@@ -169,16 +153,6 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <select
-        className="p-2 border block border-gray-200 rounded"
-        onChange={(e) => setVoiceIndex(Number(e.target.value))}
-      >
-        {voices.map((voice, index) => (
-          <option key={index} value={index}>
-            {`${voice.name} (${voice.lang})`}
-          </option>
-        ))}
-      </select>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">

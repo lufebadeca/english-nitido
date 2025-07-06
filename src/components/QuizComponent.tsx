@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, XCircle, Volume2, RotateCcw, ArrowRight, Clock } from 'lucide-react';
-import { QuizQuestion, QuizAnswer } from '../types';
-import { audioManager } from '../utils/audioUtils';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  CheckCircle,
+  XCircle,
+  Volume2,
+  RotateCcw,
+  ArrowRight,
+  Clock,
+} from "lucide-react";
+import { QuizQuestion, QuizAnswer } from "../types";
+import { audioManager } from "../utils/audioUtils";
+import { useVoice } from "../contexts/VoiceContext";
 
 interface QuizComponentProps {
   questions: QuizQuestion[];
@@ -10,14 +18,14 @@ interface QuizComponentProps {
   title?: string;
 }
 
-const QuizComponent: React.FC<QuizComponentProps> = ({ 
-  questions, 
-  onComplete, 
-  title = "Quiz" 
+const QuizComponent: React.FC<QuizComponentProps> = ({
+  questions,
+  onComplete,
+  title = "Quiz",
 }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<QuizAnswer[]>([]);
-  const [currentAnswer, setCurrentAnswer] = useState('');
+  const [currentAnswer, setCurrentAnswer] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
@@ -28,16 +36,19 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
 
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
+  const { currentEngVoice } = useVoice();
 
   useEffect(() => {
     setQuestionStartTime(Date.now());
-    setCurrentAnswer('');
+    setCurrentAnswer("");
     setShowFeedback(false);
     setIsPlayingAudio(false);
-    
+
     // Initialize sentence ordering
-    if (currentQuestion.type === 'sentence-order' && currentQuestion.words) {
-      setAvailableWords([...currentQuestion.words].sort(() => Math.random() - 0.5));
+    if (currentQuestion.type === "sentence-order" && currentQuestion.words) {
+      setAvailableWords(
+        [...currentQuestion.words].sort(() => Math.random() - 0.5)
+      );
       setDraggedWords([]);
     }
   }, [currentQuestionIndex, currentQuestion]);
@@ -46,9 +57,15 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
     if (currentQuestion.audioUrl || currentQuestion.correctAnswer) {
       setIsPlayingAudio(true);
       try {
-        await audioManager.speakWord(currentQuestion.audioUrl || currentQuestion.correctAnswer);
+        await audioManager.speakWord(
+          currentQuestion.audioUrl || currentQuestion.correctAnswer,
+          {
+            lang: currentEngVoice?.lang,
+            name: currentEngVoice?.name,
+          }
+        );
       } catch (error) {
-        console.error('Error playing audio:', error);
+        console.error("Error playing audio:", error);
       } finally {
         setIsPlayingAudio(false);
       }
@@ -58,12 +75,14 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
   const handleAnswerSubmit = () => {
     const timeSpent = Date.now() - questionStartTime;
     let finalAnswer = currentAnswer;
-    
-    if (currentQuestion.type === 'sentence-order') {
-      finalAnswer = draggedWords.join(' ');
+
+    if (currentQuestion.type === "sentence-order") {
+      finalAnswer = draggedWords.join(" ");
     }
 
-    const correct = finalAnswer.toLowerCase().trim() === currentQuestion.correctAnswer.toLowerCase().trim();
+    const correct =
+      finalAnswer.toLowerCase().trim() ===
+      currentQuestion.correctAnswer.toLowerCase().trim();
     setIsCorrect(correct);
     setShowFeedback(true);
 
@@ -72,7 +91,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
       userAnswer: finalAnswer,
       correctAnswer: currentQuestion.correctAnswer,
       isCorrect: correct,
-      timeSpent
+      timeSpent,
     };
 
     setUserAnswers([...userAnswers, answer]);
@@ -80,8 +99,10 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
 
   const handleNext = () => {
     if (isLastQuestion) {
-      const totalScore = userAnswers.reduce((sum, answer, index) => 
-        sum + (answer.isCorrect ? questions[index].points : 0), 0
+      const totalScore = userAnswers.reduce(
+        (sum, answer, index) =>
+          sum + (answer.isCorrect ? questions[index].points : 0),
+        0
       );
       const totalTime = Date.now() - startTime;
       onComplete(totalScore, userAnswers, totalTime);
@@ -92,22 +113,20 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
 
   const handleWordDrag = (word: string, fromAvailable: boolean) => {
     if (fromAvailable) {
-      setAvailableWords(availableWords.filter(w => w !== word));
+      setAvailableWords(availableWords.filter((w) => w !== word));
       setDraggedWords([...draggedWords, word]);
     } else {
-      setDraggedWords(draggedWords.filter(w => w !== word));
+      setDraggedWords(draggedWords.filter((w) => w !== word));
       setAvailableWords([...availableWords, word]);
     }
   };
 
   const renderQuestionContent = () => {
     switch (currentQuestion.type) {
-      case 'fill-blank':
+      case "fill-blank":
         return (
           <div className="space-y-4">
-            <p className="text-lg text-gray-800">
-              {currentQuestion.question}
-            </p>
+            <p className="text-lg text-gray-800">{currentQuestion.question}</p>
             <input
               type="text"
               value={currentAnswer}
@@ -119,7 +138,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
           </div>
         );
 
-      case 'multiple-choice':
+      case "multiple-choice":
         return (
           <div className="space-y-4">
             <p className="text-lg text-gray-800 mb-4">
@@ -133,9 +152,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                   disabled={showFeedback}
                   className={`w-full p-3 text-left rounded-lg border-2 transition-all duration-200 ${
                     currentAnswer === option
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-300 hover:border-blue-300'
-                  } ${showFeedback ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                      ? "border-blue-500 bg-blue-50"
+                      : "border-gray-300 hover:border-blue-300"
+                  } ${showFeedback ? "cursor-not-allowed" : "cursor-pointer"}`}
                 >
                   {option}
                 </button>
@@ -144,21 +163,19 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
           </div>
         );
 
-      case 'type-word':
+      case "type-word":
         return (
           <div className="space-y-4">
             {currentQuestion.imageUrl && (
               <div className="flex justify-center">
-                <img 
-                  src={currentQuestion.imageUrl} 
-                  alt="Question" 
+                <img
+                  src={currentQuestion.imageUrl}
+                  alt="Question"
                   className="max-w-xs rounded-lg shadow-md"
                 />
               </div>
             )}
-            <p className="text-lg text-gray-800">
-              {currentQuestion.question}
-            </p>
+            <p className="text-lg text-gray-800">{currentQuestion.question}</p>
             <input
               type="text"
               value={currentAnswer}
@@ -170,7 +187,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
           </div>
         );
 
-      case 'audio-type':
+      case "audio-type":
         return (
           <div className="space-y-4">
             <p className="text-lg text-gray-800 mb-4">
@@ -186,7 +203,11 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                   <motion.div
                     className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                 ) : (
                   <Volume2 size={20} />
@@ -205,7 +226,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
           </div>
         );
 
-      case 'audio-multiple-choice':
+      case "audio-multiple-choice":
         return (
           <div className="space-y-4">
             <p className="text-lg text-gray-800 mb-4">
@@ -221,7 +242,11 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                   <motion.div
                     className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                 ) : (
                   <Volume2 size={20} />
@@ -237,9 +262,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                   disabled={showFeedback}
                   className={`w-full p-3 text-left rounded-lg border-2 transition-all duration-200 ${
                     currentAnswer === option
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-300 hover:border-blue-300'
-                  } ${showFeedback ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                      ? "border-blue-500 bg-blue-50"
+                      : "border-gray-300 hover:border-blue-300"
+                  } ${showFeedback ? "cursor-not-allowed" : "cursor-pointer"}`}
                 >
                   {option}
                 </button>
@@ -248,16 +273,18 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
           </div>
         );
 
-      case 'sentence-order':
+      case "sentence-order":
         return (
           <div className="space-y-4">
             <p className="text-lg text-gray-800 mb-4">
               {currentQuestion.question}
             </p>
-            
+
             {/* Dragged words area */}
             <div className="min-h-16 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-              <p className="text-sm text-gray-600 mb-2">Arrastra las palabras aquí:</p>
+              <p className="text-sm text-gray-600 mb-2">
+                Arrastra las palabras aquí:
+              </p>
               <div className="flex flex-wrap gap-2">
                 {draggedWords.map((word, index) => (
                   <motion.button
@@ -299,10 +326,10 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
   };
 
   const canSubmit = () => {
-    if (currentQuestion.type === 'sentence-order') {
+    if (currentQuestion.type === "sentence-order") {
       return draggedWords.length > 0;
     }
-    return currentAnswer.trim() !== '';
+    return currentAnswer.trim() !== "";
   };
 
   return (
@@ -328,8 +355,8 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
         <motion.div
           className="bg-blue-500 h-2 rounded-full"
           initial={{ width: 0 }}
-          animate={{ 
-            width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` 
+          animate={{
+            width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
           }}
           transition={{ duration: 0.3 }}
         />
@@ -364,9 +391,9 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 className={`p-4 rounded-lg border-2 ${
-                  isCorrect 
-                    ? 'bg-green-50 border-green-200' 
-                    : 'bg-red-50 border-red-200'
+                  isCorrect
+                    ? "bg-green-50 border-green-200"
+                    : "bg-red-50 border-red-200"
                 }`}
               >
                 <div className="flex items-center space-x-2 mb-2">
@@ -375,23 +402,28 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                   ) : (
                     <XCircle className="text-red-600" size={20} />
                   )}
-                  <span className={`font-semibold ${
-                    isCorrect ? 'text-green-800' : 'text-red-800'
-                  }`}>
-                    {isCorrect ? '¡Correcto!' : 'Incorrecto'}
+                  <span
+                    className={`font-semibold ${
+                      isCorrect ? "text-green-800" : "text-red-800"
+                    }`}
+                  >
+                    {isCorrect ? "¡Correcto!" : "Incorrecto"}
                   </span>
                 </div>
-                
+
                 {!isCorrect && (
                   <p className="text-red-700 mb-2">
-                    <strong>Respuesta correcta:</strong> {currentQuestion.correctAnswer}
+                    <strong>Respuesta correcta:</strong>{" "}
+                    {currentQuestion.correctAnswer}
                   </p>
                 )}
-                
+
                 {currentQuestion.explanation && (
-                  <p className={`text-sm ${
-                    isCorrect ? 'text-green-700' : 'text-red-700'
-                  }`}>
+                  <p
+                    className={`text-sm ${
+                      isCorrect ? "text-green-700" : "text-red-700"
+                    }`}
+                  >
                     {currentQuestion.explanation}
                   </p>
                 )}
@@ -415,7 +447,7 @@ const QuizComponent: React.FC<QuizComponentProps> = ({
                 onClick={handleNext}
                 className="flex items-center space-x-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
               >
-                <span>{isLastQuestion ? 'Finalizar Quiz' : 'Siguiente'}</span>
+                <span>{isLastQuestion ? "Finalizar Quiz" : "Siguiente"}</span>
                 <ArrowRight size={16} />
               </button>
             )}

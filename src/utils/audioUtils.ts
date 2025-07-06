@@ -20,7 +20,11 @@ export class AudioManager {
       this.voices = this.synth
         .getVoices()
         .filter(
-          (voice) => voice.lang.startsWith("en") || voice.lang.startsWith("es")
+          (voice) =>
+            voice.lang.startsWith("en-US") ||
+            voice.lang.startsWith("es-MX") ||
+            voice.lang.startsWith("en_US") ||
+            voice.lang.startsWith("es_MX")
         );
     };
 
@@ -48,32 +52,32 @@ export class AudioManager {
       }
 
       console.log(this.voices);
-      console.log(text);
-      console.log("recibo deopts: " + options.lang + " " + options.name);
+      //console.log(text);
+      console.log("lang recibido: " + options.lang);
 
       const utterance = new SpeechSynthesisUtterance(text);
       const lang = options.lang || "en-US";
-      const name = options.name || "Google US English";
 
       // Buscar cualquier voz que empiece por 'en' o 'es', etc.
-      const langPrefix = lang.slice(0, 2).toLowerCase();
+      //const langPrefix = lang.slice(0, 2).toLowerCase();
 
-      console.log("recibo: " + lang + " " + name);
+      console.log("lang a usar: " + lang + " " + options.name);
       const preferredVoice = this.voices.find(
         (voice) =>
           //voice.lang.toLowerCase().startsWith(langPrefix)
-          voice.lang === lang && voice.name === name
+          voice.lang === options.lang && voice.name === options.name
       );
 
       if (preferredVoice) {
         utterance.voice = preferredVoice;
+        utterance.lang = lang;
       } else {
-        utterance.lang = lang; // al menos indicamos el idioma
+        utterance.lang = lang; // idioma al menos para utterance, parece ser lo que funciona
         console.warn(
           `⚠️ No se encontró voz para el idioma "${lang}". Usando voz por defecto.`
         );
       }
-      alert(`${utterance.voice?.name} (${utterance.voice?.lang})`);
+      alert(`voice: ${utterance.voice?.name} (${utterance.voice?.lang})`);
       utterance.rate = options.rate || 0.8;
       utterance.pitch = options.pitch || 1;
       utterance.volume = options.volume || 1;
@@ -85,8 +89,15 @@ export class AudioManager {
     });
   }
 
-  speakSentence(text: string): Promise<void> {
-    return this.speakWord(text, { rate: 0.7 });
+  speakSentence(
+    text: string,
+    options: { lang?: string; name?: string }
+  ): Promise<void> {
+    return this.speakWord(text, {
+      rate: 0.7,
+      lang: options.lang,
+      name: options.name,
+    });
   }
 
   stopSpeaking(): void {

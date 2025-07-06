@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useVoice } from "../contexts/VoiceContext";
 import { motion } from "framer-motion";
 import {
   BookOpen,
@@ -34,12 +35,16 @@ interface ExampleCardProps {
 const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isTranslationVisible, setIsTranslationVisible] = useState(false);
+  const { currentEngVoice } = useVoice();
 
   const playExample = async (example: string) => {
     if (isPlaying) return;
     setIsPlaying(true);
     try {
-      await audioManager.speakSentence(example);
+      await audioManager.speakSentence(example, {
+        lang: currentEngVoice?.lang,
+        name: currentEngVoice?.name,
+      });
     } catch (error) {
       console.error("Error playing audio:", error);
     } finally {

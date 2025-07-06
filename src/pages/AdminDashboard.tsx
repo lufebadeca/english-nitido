@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Users, BookOpen, Trophy, TrendingUp, Calendar, Award } from 'lucide-react';
-import { supabase } from '../utils/supabase';
-import { User } from '../types';
-import BroserLanguages from '../components/BroserLanguages';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  Users,
+  BookOpen,
+  Trophy,
+  TrendingUp,
+  Calendar,
+  Award,
+} from "lucide-react";
+import { supabase } from "../utils/supabase";
+import { User } from "../types";
+import BroserLanguages from "../components/BrowserLanguages";
 
 const AdminDashboard: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -17,44 +24,45 @@ const AdminDashboard: React.FC = () => {
   const loadUsers = async () => {
     try {
       const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('role', 'student')
-        .order('created_at', { ascending: false });
-  
+        .from("users")
+        .select("*")
+        .eq("role", "student")
+        .order("created_at", { ascending: false });
+
       if (error) {
-        console.error('Error loading users:', error);
+        console.error("Error loading users:", error);
         // Show error message to user
-        throw new Error('Failed to load user data');
+        throw new Error("Failed to load user data");
       }
-  
+
       if (!data || data.length === 0) {
         // Handle empty data case
-        throw new Error('No users found');
+        throw new Error("No users found");
       }
-  
 
-      setUsers(data.map(user => ({
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        createdAt: user.created_at,
-        lastLogin: user.last_login,
-        progress: user.progress || {
-          level: 0,
-          completedLessons: [],
-          streakDays: 0,
-          totalPoints: 0,
-          achievements: [],
-          assessmentScore: 0,
-          lastActiveDate: '',
-          lessonScores: {},
-          quizAttempts: {}
-        }
-      })));
+      setUsers(
+        data.map((user) => ({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+          createdAt: user.created_at,
+          lastLogin: user.last_login,
+          progress: user.progress || {
+            level: 0,
+            completedLessons: [],
+            streakDays: 0,
+            totalPoints: 0,
+            achievements: [],
+            assessmentScore: 0,
+            lastActiveDate: "",
+            lessonScores: {},
+            quizAttempts: {},
+          },
+        }))
+      );
     } catch (error) {
-      console.error('Error loading users:', error);
+      console.error("Error loading users:", error);
     } finally {
       setLoading(false);
     }
@@ -62,20 +70,20 @@ const AdminDashboard: React.FC = () => {
 
   const getStats = () => {
     const totalUsers = users.length;
-    const activeUsers = users.filter(user => {
+    const activeUsers = users.filter((user) => {
       const lastLogin = new Date(user.lastLogin);
       const weekAgo = new Date();
       weekAgo.setDate(weekAgo.getDate() - 7);
       return lastLogin > weekAgo;
     }).length;
 
-    const totalLessonsCompleted = users.reduce((sum, user) => 
-      sum + (user.progress?.completedLessons?.length || 0), 0
+    const totalLessonsCompleted = users.reduce(
+      (sum, user) => sum + (user.progress?.completedLessons?.length || 0),
+      0
     );
 
-    const averageProgress = users.length > 0 
-      ? Math.round(totalLessonsCompleted / users.length)
-      : 0;
+    const averageProgress =
+      users.length > 0 ? Math.round(totalLessonsCompleted / users.length) : 0;
 
     return { totalUsers, activeUsers, totalLessonsCompleted, averageProgress };
   };
@@ -117,7 +125,9 @@ const AdminDashboard: React.FC = () => {
           <div className="flex items-center space-x-3">
             <Users className="text-blue-500" size={32} />
             <div>
-              <p className="text-2xl font-bold text-gray-800">{stats.totalUsers}</p>
+              <p className="text-2xl font-bold text-gray-800">
+                {stats.totalUsers}
+              </p>
               <p className="text-sm text-gray-600">Total Estudiantes</p>
             </div>
           </div>
@@ -127,7 +137,9 @@ const AdminDashboard: React.FC = () => {
           <div className="flex items-center space-x-3">
             <TrendingUp className="text-green-500" size={32} />
             <div>
-              <p className="text-2xl font-bold text-gray-800">{stats.activeUsers}</p>
+              <p className="text-2xl font-bold text-gray-800">
+                {stats.activeUsers}
+              </p>
               <p className="text-sm text-gray-600">Activos (7 días)</p>
             </div>
           </div>
@@ -137,7 +149,9 @@ const AdminDashboard: React.FC = () => {
           <div className="flex items-center space-x-3">
             <BookOpen className="text-purple-500" size={32} />
             <div>
-              <p className="text-2xl font-bold text-gray-800">{stats.totalLessonsCompleted}</p>
+              <p className="text-2xl font-bold text-gray-800">
+                {stats.totalLessonsCompleted}
+              </p>
               <p className="text-sm text-gray-600">Lecciones Completadas</p>
             </div>
           </div>
@@ -147,7 +161,9 @@ const AdminDashboard: React.FC = () => {
           <div className="flex items-center space-x-3">
             <Trophy className="text-yellow-500" size={32} />
             <div>
-              <p className="text-2xl font-bold text-gray-800">{stats.averageProgress}</p>
+              <p className="text-2xl font-bold text-gray-800">
+                {stats.averageProgress}
+              </p>
               <p className="text-sm text-gray-600">Promedio Lecciones</p>
             </div>
           </div>
@@ -198,7 +214,9 @@ const AdminDashboard: React.FC = () => {
                 <tr key={user.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                      <div className="text-sm font-medium text-gray-900">
+                        {user.name}
+                      </div>
                       <div className="text-sm text-gray-500">{user.email}</div>
                     </div>
                   </td>
@@ -215,7 +233,9 @@ const AdminDashboard: React.FC = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <span className="text-sm text-gray-900">{user.progress?.streakDays || 0}</span>
+                      <span className="text-sm text-gray-900">
+                        {user.progress?.streakDays || 0}
+                      </span>
                       <span className="ml-1 text-orange-500">🔥</span>
                     </div>
                   </td>
@@ -238,20 +258,39 @@ const AdminDashboard: React.FC = () => {
         {/* Cards para mobile */}
         <div className="block md:hidden space-y-4">
           {users.map((user) => (
-            <div key={user.id} className="bg-white rounded-xl shadow-md p-4 border border-gray-200">
+            <div
+              key={user.id}
+              className="bg-white rounded-xl shadow-md p-4 border border-gray-200"
+            >
               <div className="mb-2">
                 <p className="font-semibold text-gray-800">{user.name}</p>
                 <p className="text-sm text-gray-500">{user.email}</p>
               </div>
               <div className="text-sm text-gray-700 space-y-1">
-                <p><strong>Nivel:</strong> {user.progress?.level || 0}</p>
-                <p><strong>Lecciones:</strong> {user.progress?.completedLessons?.length || 0}/48</p>
-                <p><strong>Puntos:</strong> {user.progress?.totalPoints || 0}</p>
-                <p><strong>Racha:</strong> {user.progress?.streakDays || 0} días 🔥</p>
-                <p><strong>Último acceso:</strong> {new Date(user.lastLogin).toLocaleDateString()}</p>
+                <p>
+                  <strong>Nivel:</strong> {user.progress?.level || 0}
+                </p>
+                <p>
+                  <strong>Lecciones:</strong>{" "}
+                  {user.progress?.completedLessons?.length || 0}/48
+                </p>
+                <p>
+                  <strong>Puntos:</strong> {user.progress?.totalPoints || 0}
+                </p>
+                <p>
+                  <strong>Racha:</strong> {user.progress?.streakDays || 0} días
+                  🔥
+                </p>
+                <p>
+                  <strong>Último acceso:</strong>{" "}
+                  {new Date(user.lastLogin).toLocaleDateString()}
+                </p>
               </div>
               <div className="mt-3 text-right">
-                <button onClick={() => setSelectedUser(user)} className="text-blue-600 font-medium hover:underline text-sm">
+                <button
+                  onClick={() => setSelectedUser(user)}
+                  className="text-blue-600 font-medium hover:underline text-sm"
+                >
                   Ver Detalles
                 </button>
               </div>
@@ -288,16 +327,21 @@ const AdminDashboard: React.FC = () => {
                 <div className="bg-blue-50 rounded-lg p-4">
                   <div className="flex items-center space-x-2">
                     <Trophy className="text-blue-500" size={20} />
-                    <span className="font-semibold text-blue-800">Nivel {selectedUser.progress?.level || 0}</span>
+                    <span className="font-semibold text-blue-800">
+                      Nivel {selectedUser.progress?.level || 0}
+                    </span>
                   </div>
-                  <p className="text-blue-600 text-sm mt-1">{selectedUser.progress?.totalPoints || 0} puntos</p>
+                  <p className="text-blue-600 text-sm mt-1">
+                    {selectedUser.progress?.totalPoints || 0} puntos
+                  </p>
                 </div>
 
                 <div className="bg-green-50 rounded-lg p-4">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="text-green-500" size={20} />
                     <span className="font-semibold text-green-800">
-                      {selectedUser.progress?.completedLessons?.length || 0} Lecciones
+                      {selectedUser.progress?.completedLessons?.length || 0}{" "}
+                      Lecciones
                     </span>
                   </div>
                   <p className="text-green-600 text-sm mt-1">Completadas</p>
@@ -305,27 +349,39 @@ const AdminDashboard: React.FC = () => {
               </div>
 
               {/* Achievements */}
-              {selectedUser.progress?.achievements && selectedUser.progress.achievements.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                    <Award size={20} />
-                    Logros Obtenidos
-                  </h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {selectedUser.progress.achievements.map((achievement, index) => (
-                      <div key={index} className="bg-yellow-50 rounded-lg p-3">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-lg">{achievement.icon}</span>
-                          <div>
-                            <p className="font-medium text-yellow-800 text-sm">{achievement.title}</p>
-                            <p className="text-yellow-600 text-xs">{achievement.points} puntos</p>
+              {selectedUser.progress?.achievements &&
+                selectedUser.progress.achievements.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                      <Award size={20} />
+                      Logros Obtenidos
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {selectedUser.progress.achievements.map(
+                        (achievement, index) => (
+                          <div
+                            key={index}
+                            className="bg-yellow-50 rounded-lg p-3"
+                          >
+                            <div className="flex items-center space-x-2">
+                              <span className="text-lg">
+                                {achievement.icon}
+                              </span>
+                              <div>
+                                <p className="font-medium text-yellow-800 text-sm">
+                                  {achievement.title}
+                                </p>
+                                <p className="text-yellow-600 text-xs">
+                                  {achievement.points} puntos
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    ))}
+                        )
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Recent Activity */}
               <div>
@@ -334,12 +390,26 @@ const AdminDashboard: React.FC = () => {
                   Información de Cuenta
                 </h4>
                 <div className="space-y-2 text-sm">
-                  <p><strong>Email:</strong> {selectedUser.email}</p>
-                  <p><strong>Registrado:</strong> {new Date(selectedUser.createdAt).toLocaleDateString()}</p>
-                  <p><strong>Último acceso:</strong> {new Date(selectedUser.lastLogin).toLocaleDateString()}</p>
-                  <p><strong>Racha actual:</strong> {selectedUser.progress?.streakDays || 0} días</p>
+                  <p>
+                    <strong>Email:</strong> {selectedUser.email}
+                  </p>
+                  <p>
+                    <strong>Registrado:</strong>{" "}
+                    {new Date(selectedUser.createdAt).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Último acceso:</strong>{" "}
+                    {new Date(selectedUser.lastLogin).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Racha actual:</strong>{" "}
+                    {selectedUser.progress?.streakDays || 0} días
+                  </p>
                   {selectedUser.progress?.assessmentScore && (
-                    <p><strong>Evaluación inicial:</strong> {selectedUser.progress.assessmentScore}%</p>
+                    <p>
+                      <strong>Evaluación inicial:</strong>{" "}
+                      {selectedUser.progress.assessmentScore}%
+                    </p>
                   )}
                 </div>
               </div>
