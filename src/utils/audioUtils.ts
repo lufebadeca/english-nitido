@@ -81,7 +81,7 @@ export class AudioManager {
           `⚠️ No se encontró voz para el idioma "${lang}". Usando voz por defecto.`
         );
       }
-      alert(`voice: ${utterance.voice?.name} (${utterance.voice?.lang})`);
+      //alert(`voice: ${utterance.voice?.name} (${utterance.voice?.lang})`);
       utterance.rate = options.rate || 0.8;
       utterance.pitch = options.pitch || 1;
       utterance.volume = options.volume || 1;
