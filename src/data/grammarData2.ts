@@ -13,24 +13,24 @@ export const basicGrammar2Rules: GrammarRule[] = [
     ],
     examples: [
       {
-        correct: "I am a student",
-        translation: "Soy estudiante",
+        en: "I am a student",
+        es: "Soy estudiante",
         explanation: "Acción habitual: to be ➡️ am",
       },
       {
-        correct: "She is a teacher",
-        translation: "Ella es maestra",
+        en: "She is a teacher",
+        es: "Ella es maestra",
         explanation: "Tercera persona singular: to be ➡️ is",
       },
       {
-        correct: "We are students",
-        translation: "Somos estudiantes",
+        en: "We are students",
+        es: "Somos estudiantes",
         explanation: "Tercera persona plural: to be ➡️ are",
       },
       {
-        correct: "She is not a doctor",
+        en: "She is not a doctor",
         incorrect: "She not is a doctor",
-        translation: "Ella no es doctora",
+        es: "Ella no es doctora",
         explanation:
           'Tercera persona singular negativo - añado "not" tras el verbo',
       },
@@ -53,34 +53,34 @@ export const basicGrammar2Rules: GrammarRule[] = [
     ],
     examples: [
       {
-        correct: "I have a green car",
+        en: "I have a green car",
         incorrect: "I have a car green",
-        translation: "Tengo un carro verde",
+        es: "Tengo un carro verde",
         explanation:
           "Green (verde) es un adjetivo porque describe la cualidad (color) del carro",
       },
       {
-        correct: "My little sister plays with toys",
-        translation: "Mi hermana pequeña juega con juguetes",
+        en: "My little sister plays with toys",
+        es: "Mi hermana pequeña juega con juguetes",
         explanation:
           "Little (pequeña) es un adjetivo porque describe la cualidad (tamaño/edad) de la hermana",
       },
       {
-        correct: "The children like white shirts",
+        en: "The children like white shirts",
         incorrect: "The children like whites shirts",
-        translation: "A los niños les gustan las camisetas blancas",
+        es: "A los niños les gustan las camisetas blancas",
         explanation:
           "White (blanco) es un adjetivo porque describe la cualidad (color) de las camisetas",
       },
       {
-        correct: "They have really fast bikes",
-        translation: "Tienen bicicletas muy rápidas",
+        en: "They have really fast bikes",
+        es: "Tienen bicicletas muy rápidas",
         explanation:
           "Fast (rápido) es un adjetivo porque describe la cualidad (velocidad) de las bicicletas",
       },
       {
-        correct: "We are good swimmers",
-        translation: "Somos buenos nadadores",
+        en: "We are good swimmers",
+        es: "Somos buenos nadadores",
         explanation:
           "Good (bueno) es un adjetivo porque describe la cualidad (habilidad) de los nadadores",
       },
@@ -102,16 +102,16 @@ export const basicGrammar2Rules: GrammarRule[] = [
     ],
     examples: [
       {
-        correct: "My grandmother walks very slowly",
+        en: "My grandmother walks very slowly",
         incorrect: "My grandmother walks very slow",
-        translation: "Mi abuela camina muy lentamente",
+        es: "Mi abuela camina muy lentamente",
         explanation:
           "Slowly (lentamente) es un adverbio porque describe la forma (velocidad) de caminar",
       },
       {
-        correct: "Native speakers talk very well",
+        en: "Native speakers talk very well",
         incorrect: "Native speakers talk very good",
-        translation: "Los hablantes nativos hablan muy bien",
+        es: "Los hablantes nativos hablan muy bien",
         explanation:
           "Well (bien) es un adverbio que describe la forma (velocidad) de hablar.",
       },
@@ -127,7 +127,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-1",
     type: "multiple-choice",
-    question: "Choose the correct sentence:",
+    question: "Choose the en sentence:",
     options: [
       "She is a teacher",
       "She are a teacher",
@@ -163,7 +163,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-4",
     type: "sentence-order",
-    question: "Arrange these words in the correct order:",
+    question: "Arrange these words in the en order:",
     words: ["old", "I", "have", "book", "an"],
     correctAnswer: "I have an old book",
     explanation:
@@ -173,7 +173,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-5",
     type: "multiple-choice",
-    question: "Which sentence is correct?",
+    question: "Which sentence is en?",
     options: [
       "The children like whites shirts",
       "The children like white shirts",
@@ -188,7 +188,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-6",
     type: "multiple-choice",
-    question: "Which sentence is correct?",
+    question: "Which sentence is en?",
     options: [
       "I don't run very fast",
       "I don't run very speed",
@@ -203,7 +203,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-7",
     type: "sentence-order",
-    question: "Arrange these words in the correct order:",
+    question: "Arrange these words in the en order:",
     words: ["very", "Native", "clearly", "speakers", "talk"],
     correctAnswer: "Native speakers talk very clearly",
     explanation:

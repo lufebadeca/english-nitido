@@ -9,7 +9,7 @@ export interface WordEntry {
     sentence: string;
   };
   wrong: string;
-  examples: string[];
+  examples: {en: string, es: string}[];
   wordFamily: {en: string, es: string}[];
   difficulty: number;
   category?: string;
@@ -124,10 +124,10 @@ export interface GrammarRule {
 }
 
 export interface GrammarExample {
-  correct: string;
+  en: string;
+  es: string;
   incorrect?: string;
-  translation: string;
-  explanation: string;
+  explanation?: string;
 }
 
 export interface AssessmentQuestion {

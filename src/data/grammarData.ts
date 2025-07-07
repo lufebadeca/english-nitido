@@ -13,25 +13,25 @@ export const basicGrammarRules: GrammarRule[] = [
     ],
     examples: [
       {
-        correct: "I study every day",
-        translation: "Estudio todos los días",
+        en: "I study every day",
+        es: "Estudio todos los días",
         explanation: 'Acción habitual - uso "study" sin "s"',
       },
       {
-        correct: "She works at a hospital",
-        translation: "Ella trabaja en un hospital",
+        en: "She works at a hospital",
+        es: "Ella trabaja en un hospital",
         explanation: 'Tercera persona singular - añado "s" al verbo',
       },
       {
-        correct: "We don't like coffee",
+        en: "We don't like coffee",
         incorrect: "We don't likes coffee",
-        translation: "No nos gusta el café",
+        es: "No nos gusta el café",
         explanation: 'En negativo, el verbo principal no lleva "s"',
       },
       {
-        correct: "She does not have a car",
+        en: "She does not have a car",
         incorrect: "She do not have a car",
-        translation: "Ella no tiene un coche",
+        es: "Ella no tiene un coche",
         explanation: 'Tercera persona, negativo - añado "not" al verbo',
       },
     ],
@@ -52,18 +52,18 @@ export const basicGrammarRules: GrammarRule[] = [
     ],
     examples: [
       {
-        correct: "I need a pen",
-        translation: "Necesito un bolígrafo (cualquiera)",
+        en: "I need a pen",
+        es: "Necesito un bolígrafo (cualquiera)",
         explanation: 'Uso "a" porque "pen" empieza con consonante',
       },
       {
-        correct: "I need an apple",
-        translation: "Necesito una manzana (cualquiera)",
+        en: "I need an apple",
+        es: "Necesito una manzana (cualquiera)",
         explanation: 'Uso "an" porque "apple" empieza con vocal',
       },
       {
-        correct: "The pen on the table is mine",
-        translation: "El bolígrafo de la mesa es mío",
+        en: "The pen on the table is mine",
+        es: "El bolígrafo de la mesa es mío",
         explanation: 'Uso "the" porque hablo de un bolígrafo específico',
       },
     ],
@@ -85,15 +85,15 @@ export const basicGrammarRules: GrammarRule[] = [
     ],
     examples: [
       {
-        correct: "I bought a book yesterday",
+        en: "I bought a book yesterday",
         incorrect: "I yesterday bought a book",
-        translation: "Compré un libro ayer",
+        es: "Compré un libro ayer",
         explanation: "El tiempo va al final, no entre sujeto y verbo",
       },
       {
-        correct: "She speaks English very well",
+        en: "She speaks English very well",
         incorrect: "She very well speaks English",
-        translation: "Ella habla inglés muy bien",
+        es: "Ella habla inglés muy bien",
         explanation: "El adverbio de modo va después del objeto",
       },
     ],
@@ -109,7 +109,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-1",
     type: "multiple-choice",
-    question: "Choose the correct sentence:",
+    question: "Choose the en sentence:",
     options: [
       "She work at a hospital",
       "She works at a hospital",
@@ -134,7 +134,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-3",
     type: "sentence-order",
-    question: "Arrange these words in the correct order:",
+    question: "Arrange these words in the en order:",
     words: ["yesterday", "I", "bought", "a", "book"],
     correctAnswer: "I bought a book yesterday",
     explanation: "English word order: Subject + Verb + Object + Time",
@@ -143,7 +143,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-4",
     type: "multiple-choice",
-    question: "Which sentence is correct?",
+    question: "Which sentence is en?",
     options: [
       "I don't likes coffee",
       "I doesn't like coffee",

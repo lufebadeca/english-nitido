@@ -9,9 +9,6 @@ import {
   BookOpen,
   Users,
   Image,
-  XSquare,
-  XOctagon,
-  XCircle,
   XCircleIcon,
 } from "lucide-react";
 import { WordEntry } from "../types";
@@ -305,12 +302,12 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
             .map((example, index) => (
               <motion.button
                 key={index}
-                onClick={() => playExample(example)}
+                onClick={() => playExample(example.en)}
                 disabled={isPlaying}
                 className={`
                 w-full text-left p-3 rounded-lg border-2 transition-all duration-200
                 ${
-                  selectedExample === example
+                  selectedExample === example.en
                     ? "border-blue-500 bg-blue-50"
                     : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
                 }
@@ -322,9 +319,9 @@ const VocabularyCard: React.FC<VocabularyCardProps> = ({
                 whileTap={!isPlaying ? { scale: 0.99 } : {}}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-800">{example}</span>
+                  <span className="text-gray-800">{example.en}</span>
                   <div className="flex items-center space-x-1">
-                    {selectedExample === example && isPlaying ? (
+                    {selectedExample === example.en && isPlaying ? (
                       <motion.div
                         className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"
                         animate={{ rotate: 360 }}

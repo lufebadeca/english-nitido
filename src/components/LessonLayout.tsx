@@ -1,120 +1,16 @@
 import React, { useState } from "react";
-import { useVoice } from "../contexts/VoiceContext";
 import { motion } from "framer-motion";
-import {
-  BookOpen,
-  Play,
-  Award,
-  ArrowRight,
-  ArrowLeft,
-  Eye,
-  EyeOff,
-  Volume2,
-  X,
-} from "lucide-react";
+import { BookOpen, Play, Award, ArrowRight, ArrowLeft } from "lucide-react";
 import { Lesson, QuizAnswer } from "../types";
 import VocabularyCard from "./VocabularyCard";
 import QuizComponent from "./QuizComponent";
 import { ProgressManager } from "../utils/progressUtils";
-import { audioManager } from "../utils/audioUtils";
+import ExampleCard from "./ExampleCard";
 
 interface LessonLayoutProps {
   lesson: Lesson;
   onComplete: () => void;
 }
-
-interface ExampleCardProps {
-  example: {
-    correct: string;
-    translation: string;
-    explanation: string;
-    incorrect?: string;
-  };
-}
-
-const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isTranslationVisible, setIsTranslationVisible] = useState(false);
-  const { currentEngVoice } = useVoice();
-
-  const playExample = async (example: string) => {
-    if (isPlaying) return;
-    setIsPlaying(true);
-    try {
-      await audioManager.speakSentence(example, {
-        lang: currentEngVoice?.lang,
-        name: currentEngVoice?.name,
-      });
-    } catch (error) {
-      console.error("Error playing audio:", error);
-    } finally {
-      setIsPlaying(false);
-    }
-  };
-
-  return (
-    <motion.button className={`
-        w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all duration-200
-        ${
-          isPlaying ? "cursor-not-allowed opacity-50" : "cursor-pointer"
-        }
-      `}
-      whileHover={!isPlaying ? { scale: 1.02 } : {}}
-      whileTap={!isPlaying ? { scale: 0.98 } : {}}
-    >
-      <div className="flex flex-col items-start space-y-2">
-        <li className="text-black flex items-center mr-2 space-x-2">
-          <span className="flex items-center space-x-2">
-            {example.correct}
-          </span>
-          {isTranslationVisible && (
-            <EyeOff
-              size={16}
-              onClick={() => setIsTranslationVisible(!isTranslationVisible)}
-              className="text-blue-500 ml-2 cursor-pointer"
-            ></EyeOff>
-          )}
-          {!isTranslationVisible && (
-            <Eye
-              size={16}
-              onClick={() => setIsTranslationVisible(!isTranslationVisible)}
-              className="text-blue-500 ml-2 cursor-pointer"
-            ></Eye>
-          )}
-        </li>
-        {isTranslationVisible && (
-          <>
-            <li className="text-green-500 my-2">{example.translation} </li>
-            <li className="text-blue-600 text-xs my-2">
-            💡 {example.explanation}{" "}
-            </li>
-          </>
-        )}
-        {example.incorrect && !isTranslationVisible && (
-          <li className="text-red-400 text-sm my-2 flex items-center gap-2">
-            Incorrect: <span className="line-through">{example.incorrect}</span>{" "}
-          </li>
-        )}
-      </div>
-      
-      <div className="flex items-center space-x-1">
-        {isPlaying ? (
-          <motion.div
-            className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ) : (
-          <Play size={16} className="text-blue-500" onClick={() => playExample(example.correct)}/>
-        )}
-      </div>
-    </motion.button>
-  );
-};
 
 const LessonLayout: React.FC<LessonLayoutProps> = ({ lesson, onComplete }) => {
   //estado de navegacion interna de la leccion

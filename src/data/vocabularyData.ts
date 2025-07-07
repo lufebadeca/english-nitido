@@ -9,9 +9,9 @@ export const spanishLikeWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "The hospital is very modern",
-      "She works at the hospital as a nurse",
-      "We visited him at the hospital yesterday",
+      {en: "The hospital is very modern", es: "El hospital es muy moderno"},
+      {en: "She works at the hospital as a nurse", es: "Ella trabaja en el hospital como enfermera"},
+      {en: "We visited him at the hospital yesterday", es: "Nosotros lo visitamos en el hospital ayer"},
     ],
     wrong: "Hóspitol",
     wordFamily: [
@@ -39,9 +39,9 @@ export const spanishLikeWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "The animal is very cute",
-      "Wild animals live in the forest",
-      "My favorite animal is a dolphin",
+      {en: "The animal is very cute", es: "El animal es muy lindo"},
+      {en: "Wild animals live in the forest", es: "Los animales salvajes viven en el bosque"},
+      {en: "My favorite animal is a dolphin", es: "Mi animal favorito es un delfín"},
     ],
     wrong: "ánimol",
     wordFamily: [
@@ -66,9 +66,9 @@ export const spanishLikeWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Natural food is healthier",
-      "She has natural beauty",
-      "It's natural to feel nervous",
+      {en: "Natural food is healthier", es: "La comida natural es más saludable"},
+      {en: "She has natural beauty", es: "Ella tiene belleza natural"},
+      {en: "It's natural to feel nervous", es: "Es natural sentirse nervioso"},
     ],
     wrong: "natural",
     wordFamily: [
@@ -89,9 +89,9 @@ export const spanishLikeWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "My family is very important to me",
-      "We have a big family dinner every Sunday",
-      "Family comes first",
+      {en: "My family is very important to me", es: "Mi familia es muy importante para mí"},
+      {en: "We have a big family dinner every Sunday", es: "Tienen una cena familiar grande cada domingo"},
+      {en: "Family comes first", es: "La familia es primero"},
     ],
     wrong: "fámili",
     wordFamily: [
@@ -114,9 +114,9 @@ export const techWords: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Download the app from the store",
-      "The download is complete",
-      "I need to download this file",
+      {en: "Download the app from the store", es: "Descarga la app desde la tienda"},
+      {en: "The download is complete", es: "La descarga está completa"},
+      {en: "I need to download this file", es: "Necesito descargar este archivo"},
     ],
     wrong: "dounload",
     wordFamily: [
@@ -136,9 +136,9 @@ export const techWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "I love streaming movies on Netflix",
-      "Live streaming is very popular",
-      "The streaming quality is excellent",
+      {en: "I love streaming movies on Netflix", es: "Me encanta ver películas en Netflix"},
+      {en: "Live streaming is very popular", es: "La transmisión en vivo es muy popular"},
+      {en: "The streaming quality is excellent", es: "La calidad de la transmisión es excelente"},
     ],
     wrong: "estrímin",
     wordFamily: [
@@ -159,9 +159,9 @@ export const techWords: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Upload your photos to the cloud",
-      "The upload failed, try again",
-      "Please upload your resume",
+      {en: "Upload your photos to the cloud", es: "Sube tus fotos a la nube"},
+      {en: "The upload failed, try again", es: "La subida falló, intenta de nuevo"},
+      {en: "Please upload your resume", es: "Por favor, sube tu currículum"},
     ],
     wrong: "úp-load",
     wordFamily: [
@@ -181,9 +181,9 @@ export const techWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Use this hashtag in your post",
-      "The hashtag went viral",
-      "Add relevant hashtags to increase visibility",
+      {en: "Use this hashtag in your post", es: "Usa este hashtag en tu post"},
+      {en: "The hashtag went viral", es: "El hashtag se viralizó"},
+      {en: "Add relevant hashtags to increase visibility", es: "Añade hashtags relevantes para aumentar la visibilidad"},
     ],
     wrong: "hashtag",
     wordFamily: [
@@ -206,9 +206,9 @@ export const commonVerbs: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "I think about you every day",
-      "Think before you speak",
-      "What do you think about this idea?",
+      {en: "I think about you every day", es: "Pienso en ti todos los días"},
+      {en: "Think before you speak", es: "Piensa antes de hablar"},
+      {en: "What do you think about this idea?", es: "¿Qué opinas de esta idea?"},
     ],
     wrong: "tínk",
     wordFamily: [
@@ -229,9 +229,9 @@ export const commonVerbs: WordEntry[] = [
     stress: 2,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Do you understand me?",
-      "I understand the problem now",
-      "It's hard to understand his accent",
+      {en: "Do you understand me?", es: "¿Me entiendes?"},
+      {en: "I understand the problem now", es: "Ahora entiendo el problema"},
+      {en: "It's hard to understand his accent", es: "Es difícil entender su acento"},
     ],
     wrong: "understand",
     wordFamily: [
@@ -252,9 +252,9 @@ export const commonVerbs: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "I believe in you",
-      "Do you believe this story?",
-      "She believes in hard work",
+      {en: "I believe in you", es: "Creo en ti"},
+      {en: "Do you believe this story?", es: "¿Crees esta historia?"},
+      {en: "She believes in hard work", es: "Ella cree en el trabajo duro"},
     ],
     wrong: "belíf",
     wordFamily: [
@@ -276,9 +276,9 @@ export const commonVerbs: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "I remember our first meeting",
-      "Please remember to call me",
-      "Do you remember this song?",
+      {en: "I remember our first meeting", es: "Recordé nuestra primera reunión"},
+      {en: "Please remember to call me", es: "Por favor, recordame de llamarme"},
+      {en: "Do you remember this song?", es: "¿Recordas esta canción?"},
     ],
     wrong: "remember",
     wordFamily: [
@@ -301,9 +301,9 @@ export const animeMarvelWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Spider-Man is my favorite superhero",
-      "Every superhero has a weakness",
-      "She dreams of being a superhero",
+      {en: "Spider-Man is my favorite superhero", es: "Spider-Man es mi superhéroe favorito"},
+      {en: "Every superhero has a weakness", es: "Todos los superhéroes tienen una debilidad"},
+      {en: "She dreams of being a superhero", es: "Ella sueña con ser una superhéroe"},
     ],
     wrong: "superjero",
     wordFamily: [
@@ -324,9 +324,9 @@ export const animeMarvelWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "The villain has an evil plan",
-      "Every story needs a good villain",
-      "Thanos is a powerful villain",
+      {en: "The villain has an evil plan", es: "El villano tiene un plan malévolo"},
+      {en: "Every story needs a good villain", es: "Cada historia necesita un villano"},
+      {en: "Thanos is a powerful villain", es: "Thanos es un villano poderoso"},
     ],
     wrong: "villáin",
     wordFamily: [
@@ -347,9 +347,9 @@ export const animeMarvelWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "He has the power of invisibility",
-      "With great power comes great responsibility",
-      "The power went out during the storm",
+      {en: "He has the power of invisibility", es: "Él tiene el poder de la invisibilidad"},
+      {en: "With great power comes great responsibility", es: "Con gran poder viene gran responsabilidad"},
+      {en: "The power went out during the storm", es: "La electricidad se apagó durante la tormenta"},
     ],
     wrong: "pówer",
     wordFamily: [
@@ -371,9 +371,9 @@ export const animeMarvelWords: WordEntry[] = [
     stress: 2,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "The transformation scene was amazing",
-      "His transformation into a hero was gradual",
-      "The magical transformation surprised everyone",
+      {en: "The transformation scene was amazing", es: "La escena de transformación fue increíble"},
+      {en: "His physical transformation was gradual", es: "Su transformación física fue gradual"},
+      {en: "The magical transformation surprised everyone", es: "La transformación mágica sorprendió a todos"},
     ],
     wrong: "transformeichon",
     wordFamily: [
@@ -396,9 +396,9 @@ export const adjectiveWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "She has beautiful eyes",
-      "The sunset is beautiful tonight",
-      "What a beautiful song!",
+      {en: "She has beautiful eyes", es: "Él tiene ojos hermosos"},
+      {en: "The sunset is beautiful tonight", es: "El atardecer es hermoso esta noche"},
+      {en: "What a beautiful song!", es: "Qué hermosa canción!"},
     ],
     wrong: "beutiful",
     wordFamily: [
@@ -420,9 +420,9 @@ export const adjectiveWords: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "She is very intelligent",
-      "That was an intelligent decision",
-      "Dolphins are intelligent animals",
+      {en: "She is very intelligent", es: "Él es muy inteligente"},
+      {en: "That was an intelligent decision", es: "Esa fue una decisión inteligente"},
+      {en: "Dolphins are intelligent animals", es: "Los delfines son animales inteligentes"},
     ],
     wrong: "intéligent",
     wordFamily: [
@@ -443,9 +443,9 @@ export const adjectiveWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "This chair is very comfortable",
-      "I feel comfortable here",
-      "Wear comfortable shoes for walking",
+      {en: "This chair is very comfortable", es: "Esta silla es muy cómoda"},
+      {en: "I feel comfortable here", es: "Me siento cómodo aquí"},
+      {en: "Wear comfortable shoes for walking", es: "Usa zapatos cómodos para caminar"},
     ],
     wrong: "confórtabel",
     wordFamily: [
@@ -465,9 +465,9 @@ export const adjectiveWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "That road is dangerous at night",
-      "Swimming here is dangerous",
-      "He has a dangerous job",
+      {en: "That road is dangerous at night", es: "Esa carretera es peligrosa por la noche"},
+      {en: "Swimming here is dangerous", es: "Nadar aquí es peligroso"},
+      {en: "He has a dangerous job", es: "Él tiene un trabajo peligroso"},
     ],
     wrong: "dánlleroos",
     wordFamily: [
@@ -492,9 +492,9 @@ export const connectorWords: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "I like coffee. However, I prefer tea",
-      "The weather was bad. However, we had fun",
-      "It's expensive. However, it's worth it",
+      {en: "I like coffee. However, I prefer tea", es: "Me gusta el café. Sin embargo, prefiero el té"},
+      {en: "The weather was bad. However, we had fun", es: "El tiempo estaba malo. Sin embargo, fuimos divertidos"},
+      {en: "It's expensive. However, it's worth it", es: "Es caro. Sin embargo, vale la pena"},
     ],
     wrong: "jauever",
     wordFamily: [
@@ -516,9 +516,9 @@ export const connectorWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "It's raining. Therefore, we stay inside",
-      "He studied hard. Therefore, he passed",
-      "The store is closed. Therefore, we can't buy anything",
+      {en: "It's raining. Therefore, we stay inside", es: "Está lloviendo. Por lo tanto, nos quedamos en casa"},
+      {en: "He studied hard. Therefore, he passed", es: "Él estudió duro. Por lo tanto, pasó"},
+      {en: "The store is closed. Therefore, we can't buy anything", es: "La tienda está cerrada. Por lo tanto, no podemos comprar nada"},
     ],
     wrong: "terefore",
     wordFamily: [
@@ -538,9 +538,9 @@ export const connectorWords: WordEntry[] = [
     stress: 1,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "Although it's cold, I'll go out",
-      "She smiled although she was sad",
-      "Although he's young, he's very wise",
+      {en: "Although it's cold, I'll go out", es: "Aunque está frío, iré a la calle"},
+      {en: "She smiled although she was sad", es: "Ella sonrió aunque estaba triste"},
+      {en: "Although he's young, he's very wise", es: "Aunque él es joven, él es muy sabio"},
     ],
     wrong: "altoug",
     wordFamily: [
@@ -560,9 +560,9 @@ export const connectorWords: WordEntry[] = [
     stress: 0,
     audioUrls: { word: "", sentence: "" },
     examples: [
-      "I don't like it. Furthermore, it's expensive",
-      "He's smart. Furthermore, he's hardworking",
-      "The food is good. Furthermore, the service is excellent",
+      {en: "I don't like it. Furthermore, it's expensive", es: "No me gusta. Además, es caro"},
+      {en: "He's smart. Furthermore, he's hardworking", es: "Él es inteligente. Además, él es trabajador"},
+      {en: "The food is good. Furthermore, the service is excellent", es: "La comida es buena. Además, el servicio es excelente"},
     ],
     wrong: "furthermore",
     wordFamily: [
