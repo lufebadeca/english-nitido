@@ -82,7 +82,7 @@ const LessonsPage: React.FC = () => {
       difficulty: 2,
       duration: '35 min',
       points: 200,
-      isUnlocked: progress.completedLessons.includes('basic-grammar'),
+      isUnlocked: progress.completedLessons.includes('basic-grammar-2'),
       path: '/lesson/common-verbs'
     },
     {
