@@ -144,7 +144,7 @@ const LessonLayout: React.FC<LessonLayoutProps> = ({ lesson, onComplete }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 md:p-6 w-full md:max-w-[350px]"
+          className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 md:p-6 w-[350px] md:w-full "
         >
           <h2 className="text-xl font-bold text-gray-800 mb-4">
             {section.title}

@@ -182,7 +182,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* CONTENEDOR CON TABLA */}
-        <div className="block md:hidden overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
