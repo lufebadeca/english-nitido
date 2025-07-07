@@ -246,4 +246,4 @@ export const grammar2LessonsData: Lesson = {
   achievements: ["grammar-enthusiast"],
 };
 
-//Rendered in VocabularyLessonPage
+//Rendered in GrammarVocabLessonPage

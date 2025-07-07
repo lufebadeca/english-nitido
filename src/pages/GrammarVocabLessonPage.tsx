@@ -5,7 +5,7 @@ import { grammarLessonsData } from '../data/grammarData';
 import { grammar2LessonsData } from '../data/grammarData2';
 import LessonLayout from '../components/LessonLayout';
 
-const VocabularyLessonPage: React.FC = () => {
+const GrammarVocabLessonPage: React.FC = () => {
   const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
 
@@ -38,4 +38,4 @@ const VocabularyLessonPage: React.FC = () => {
   );
 };
 
-export default VocabularyLessonPage;
+export default GrammarVocabLessonPage;

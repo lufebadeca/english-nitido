@@ -53,45 +53,66 @@ const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
   };
 
   return (
-    <div className="bg-blue-50 rounded-lg p-4">
-      <li className="text-blue-700 flex items-center mr-2 space-x-2">
-        <span className="flex items-center space-x-2">
-          <Volume2
-            size={16}
-            className="text-blue-500 mr-2 cursor-pointer"
-            onClick={() => playExample(example.correct)}
-          />{" "}
-          {example.correct}
-        </span>
-        {isTranslationVisible && (
-          <EyeOff
-            size={16}
-            onClick={() => setIsTranslationVisible(!isTranslationVisible)}
-            className="text-green-500 ml-2 cursor-pointer"
-          ></EyeOff>
-        )}
-        {!isTranslationVisible && (
-          <Eye
-            size={16}
-            onClick={() => setIsTranslationVisible(!isTranslationVisible)}
-            className="text-green-500 ml-2 cursor-pointer"
-          ></Eye>
-        )}
-      </li>
-      {isTranslationVisible && (
-        <>
-          <li className="text-green-500 my-2">{example.translation} </li>
-          <li className="text-blue-600 text-xs my-2">
-            💡 {example.explanation}{" "}
-          </li>
-        </>
-      )}
-      {example.incorrect && !isTranslationVisible && (
-        <li className="text-red-400 text-sm my-2 flex items-center gap-2">
-          Incorrect: <span className="line-through">{example.incorrect}</span>{" "}
+    <motion.button className={`
+        w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all duration-200
+        ${
+          isPlaying ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+        }
+      `}
+      whileHover={!isPlaying ? { scale: 1.02 } : {}}
+      whileTap={!isPlaying ? { scale: 0.98 } : {}}
+    >
+      <div className="flex flex-col items-start space-y-2">
+        <li className="text-black flex items-center mr-2 space-x-2">
+          <span className="flex items-center space-x-2">
+            {example.correct}
+          </span>
+          {isTranslationVisible && (
+            <EyeOff
+              size={16}
+              onClick={() => setIsTranslationVisible(!isTranslationVisible)}
+              className="text-blue-500 ml-2 cursor-pointer"
+            ></EyeOff>
+          )}
+          {!isTranslationVisible && (
+            <Eye
+              size={16}
+              onClick={() => setIsTranslationVisible(!isTranslationVisible)}
+              className="text-blue-500 ml-2 cursor-pointer"
+            ></Eye>
+          )}
         </li>
-      )}
-    </div>
+        {isTranslationVisible && (
+          <>
+            <li className="text-green-500 my-2">{example.translation} </li>
+            <li className="text-blue-600 text-xs my-2">
+            💡 {example.explanation}{" "}
+            </li>
+          </>
+        )}
+        {example.incorrect && !isTranslationVisible && (
+          <li className="text-red-400 text-sm my-2 flex items-center gap-2">
+            Incorrect: <span className="line-through">{example.incorrect}</span>{" "}
+          </li>
+        )}
+      </div>
+      
+      <div className="flex items-center space-x-1">
+        {isPlaying ? (
+          <motion.div
+            className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ) : (
+          <Play size={16} className="text-blue-500" onClick={() => playExample(example.correct)}/>
+        )}
+      </div>
+    </motion.button>
   );
 };
 

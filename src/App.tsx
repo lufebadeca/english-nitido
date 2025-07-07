@@ -11,7 +11,7 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import LessonsPage from "./pages/LessonsPage";
 import PhoneticsLesson from "./pages/PhoneticsLesson";
-import VocabularyLessonPage from "./pages/VocabularyLessonPage";
+import GrammarVocabLessonPage from "./pages/GrammarVocabLessonPage";
 import PracticePage from "./pages/PracticePage";
 import AssessmentPage from "./pages/AssessmentPage";
 import MnemonicsPage from "./pages/MnemonicsPage";
@@ -85,7 +85,7 @@ const AppContent: React.FC = () => {
             <Route path="lesson/phonetics" element={<PhoneticsLesson />} />
             <Route
               path="lesson/:lessonId"
-              element={<VocabularyLessonPage />}
+              element={<GrammarVocabLessonPage />}
             />{" "}
             {/*lesson types: vocabulary, grammar */}
             <Route path="practice" element={<PracticePage />} />
