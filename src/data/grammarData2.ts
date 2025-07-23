@@ -127,7 +127,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-1",
     type: "multiple-choice",
-    question: "Choose the en sentence:",
+    question: "Choose the correct sentence:",
     options: [
       "She is a teacher",
       "She are a teacher",
@@ -163,7 +163,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-4",
     type: "sentence-order",
-    question: "Arrange these words in the en order:",
+    question: "Arrange these words in the correct order:",
     words: ["old", "I", "have", "book", "an"],
     correctAnswer: "I have an old book",
     explanation:
@@ -173,7 +173,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-5",
     type: "multiple-choice",
-    question: "Which sentence is en?",
+    question: "Which sentence is correct?",
     options: [
       "The children like whites shirts",
       "The children like white shirts",
@@ -188,7 +188,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-6",
     type: "multiple-choice",
-    question: "Which sentence is en?",
+    question: "Which sentence is correct?",
     options: [
       "I don't run very fast",
       "I don't run very speed",
@@ -203,7 +203,7 @@ export const grammar2QuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-7",
     type: "sentence-order",
-    question: "Arrange these words in the en order:",
+    question: "Arrange these words in the correct order:",
     words: ["very", "Native", "clearly", "speakers", "talk"],
     correctAnswer: "Native speakers talk very clearly",
     explanation:

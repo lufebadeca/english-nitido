@@ -109,7 +109,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-1",
     type: "multiple-choice",
-    question: "Choose the en sentence:",
+    question: "Choose the correct sentence:",
     options: [
       "She work at a hospital",
       "She works at a hospital",
@@ -134,7 +134,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-3",
     type: "sentence-order",
-    question: "Arrange these words in the en order:",
+    question: "Arrange these words in the correct order:",
     words: ["yesterday", "I", "bought", "a", "book"],
     correctAnswer: "I bought a book yesterday",
     explanation: "English word order: Subject + Verb + Object + Time",
@@ -143,7 +143,7 @@ export const grammarQuizQuestions: QuizQuestion[] = [
   {
     id: "grammar-4",
     type: "multiple-choice",
-    question: "Which sentence is en?",
+    question: "Which sentence is correct?",
     options: [
       "I don't likes coffee",
       "I doesn't like coffee",
