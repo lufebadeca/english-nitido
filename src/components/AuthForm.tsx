@@ -45,7 +45,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode, onToggleMode }) => {
       >
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            {mode === 'signin' ? 'Bienvenido de vuelta' : 'Únete a EnglishBridge'}
+            {mode === 'signin' ? 'Bienvenido de vuelta' : 'Únete a Neat English'}
           </h1>
           <p className="text-gray-600">
             {mode === 'signin' 

@@ -1,6 +1,6 @@
 {
-  "name": "EnglishBridge",
-  "short_name": "EnglishBridge",
+  "name": "Neat English",
+  "short_name": "Neat English",
   "description": "Aprende inglés de forma interactiva y efectiva",
   "start_url": "/",
   "display": "standalone",

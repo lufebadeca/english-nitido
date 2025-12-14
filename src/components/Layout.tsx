@@ -12,7 +12,7 @@ const Layout: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex">
       <div className="hidden md:block md:w-64 bg-white shadow-lg">
         <div className="p-6 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-gray-800">EnglishBridge</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Neat English</h1>
           <p className="text-sm text-gray-600 mt-1">Tu camino al inglés</p>
         </div>
         
