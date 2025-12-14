@@ -33,11 +33,19 @@ const ProtectedRoute: React.FC<{
   adminOnly?: boolean;
 }> = ({ children, adminOnly = false }) => {
   const { user, loading } = useAuth();
+  //console.log("ProtectedRoute - user:", user, "loading:", loading);
 
-  if (loading) return <LoadingSpinner />;
+  // Show loading state only during initial load
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
-  if (!user) return <Navigate to="/auth" replace />;
+  // If not loading but no user, redirect to auth
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
 
+  // If user exists but doesn't have admin role when required
   if (adminOnly && user.role !== "admin") {
     return <Navigate to="/" replace />;
   }

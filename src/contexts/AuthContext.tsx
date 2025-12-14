@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
-import { User, AuthContextType, UserProgress } from '../types';
+import { User, AuthContextType } from '../types';
 import { ProgressManager } from '../utils/progressUtils';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -14,61 +14,95 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+
   const [user, setUser] = useState<User | null>(null);
+  const [authReady, setAuthReady] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        loadUserProfile(session.user.id);
-      } else {
-        setLoading(false);
-      }
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (session?.user) {
-        await loadUserProfile(session.user.id);
-      } else {
-        setUser(null);
-        setLoading(false);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
   const loadUserProfile = async (userId: string) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
+
+    if (error) throw error;
+    if (!data) return null;
+
+    setUser({
+      id: data.id,
+      email: data.email,
+      name: data.name,
+      role: data.role,
+      createdAt: data.created_at,
+      lastLogin: data.last_login,
+      progress: data.progress ?? ProgressManager.getProgress(),
+    });
+
+    return data;
+  };
+
+
+
+  const resolveUser = async (session: any | null) => {
+    if (!session?.user) {
+      setUser(null);
+      setAuthReady(true);
+      return;
+    }
+
     try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', userId)
-        .single();
-
-      if (error) throw error;
-
-      if (data) {
-        setUser({
-          id: data.id,
-          email: data.email,
-          name: data.name,
-          role: data.role,
-          createdAt: data.created_at,
-          lastLogin: data.last_login,
-          progress: data.progress || ProgressManager.getProgress()
-        });
-      }
-    } catch (error) {
-      console.error('Error loading user profile:', error);
+      await loadUserProfile(session.user.id);
     } finally {
-      setLoading(false);
+      setAuthReady(true);
     }
   };
 
+  useEffect(() => {
+    let active = true;
+
+    const resolveSession = async (session: Session | null) => {
+      setLoading(true);
+
+      try {
+        if (session?.user) {
+          await loadUserProfile(session.user.id);
+        } else {
+          setUser(null);
+        }
+      } catch (e) {
+        console.error(e);
+        setUser(null);
+      } finally {
+        if (active) {
+          //console.log('✅ AUTH RESOLVED');
+          setLoading(false); // 🔑 THIS WAS MISSING
+        }
+      }
+    };
+
+    // initial restore
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) resolveSession(data.session);
+    });
+
+    // auth events
+    const { data: { subscription } } =
+      supabase.auth.onAuthStateChange((_event, session) => {
+        if (active) resolveSession(session);
+      });
+
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+
+
   const signIn = async (email: string, password: string) => {
+  setLoading(true); // Start loading
+  try {
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -76,15 +110,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     if (error) throw error;
 
-    // Update last login
-    const { data: { user: authUser } } = await supabase.auth.getUser();
-    if (authUser) {
-      await supabase
-        .from('users')
-        .update({ last_login: new Date().toISOString() })
-        .eq('id', authUser.id);
-    }
-  };
+    // The auth state change listener will handle the rest
+  } catch (error) {
+    console.error('Sign in error:', error);
+    setLoading(false); // Make sure to reset loading on error
+    throw error;
+  }
+};
 
   const signUp = async (email: string, password: string, name: string) => {
     const { data, error } = await supabase.auth.signUp({
@@ -117,14 +149,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (error) throw error;
   };
 
-  const value: AuthContextType = {
+   const value: AuthContextType = {
     user,
     loading,
     signIn,
     signUp,
     signOut,
+    authReady
   };
-
   return (
     <AuthContext.Provider value={value}>
       {children}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Volume2, Mic, Target, Clock, Trophy } from "lucide-react";
 import {
@@ -20,6 +20,7 @@ const PracticePage: React.FC = () => {
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const allWords = [...spanishLikeWords, ...techWords, ...commonVerbs];
 
@@ -36,11 +37,50 @@ const PracticePage: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    // Reset state when category changes
+    setCurrentWordIndex(0);
+    setIsLoading(false);
+  }, [selectedCategory]);
   const currentWords = getWordsForCategory();
-  const currentWord = currentWords[currentWordIndex];
+  const currentWord = currentWords[currentWordIndex] || null;
+  // Add a loading state
   const { currentEngVoice } = useVoice();
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+  // Add a check for no words
+  if (currentWords.length === 0) {
+    return (
+      <div className="text-center p-8">
+        <h2 className="text-xl font-semibold text-gray-700">No se encontraron palabras en esta categoría</h2>
+        <p className="text-gray-500 mt-2">Intenta seleccionar otra categoría.</p>
+      </div>
+    );
+  }
+  // Add a check for currentWord
+  if (!currentWord) {
+    return (
+      <div className="text-center p-8">
+        <h2 className="text-xl font-semibold text-gray-700">Error al cargar la palabra</h2>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Recargar
+        </button>
+      </div>
+    );
+  }
+
   const playWord = async () => {
+    if (!currentWord) return;
+    
     setIsPlaying(true);
     try {
       await audioManager.speakWord(currentWord.en, {
@@ -48,7 +88,7 @@ const PracticePage: React.FC = () => {
         name: currentEngVoice?.name,
       });
     } catch (error) {
-      console.error("Error playing audio:", error);
+      console.error("Error playing word:", error);
     } finally {
       setIsPlaying(false);
     }
