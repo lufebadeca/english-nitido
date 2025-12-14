@@ -255,10 +255,10 @@ const PracticePage: React.FC = () => {
 
           {/* Example Sentence */}
           <div className="bg-gray-50 rounded-lg p-4">
-            <p className="text-gray-700 italic">"{currentWord.examples[0]}"</p>
+            <p className="text-gray-700 italic">"{currentWord.examples[0].en}"</p>
             <button
               onClick={() =>
-                audioManager.speakSentence(currentWord.examples[0], {
+                audioManager.speakSentence(currentWord.examples[0].en, {
                   lang: currentEngVoice?.lang,
                   name: currentEngVoice?.name,
                 })
