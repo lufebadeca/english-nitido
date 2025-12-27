@@ -27,7 +27,43 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       .maybeSingle();
 
     if (error) throw error;
-    if (!data) return null;
+    
+    // If user profile doesn't exist, create it from auth data
+    if (!data) {
+      const { data: authUser } = await supabase.auth.getUser();
+      if (!authUser?.user?.email) return null;
+
+      const newUserData = {
+        id: userId,
+        email: authUser.user.email,
+        name: authUser.user.user_metadata?.name || authUser.user.email.split('@')[0],
+        role: 'student',
+        created_at: new Date().toISOString(),
+        last_login: new Date().toISOString(),
+        progress: ProgressManager.getProgress()
+      };
+
+      const { error: insertError } = await supabase
+        .from('users')
+        .insert(newUserData);
+
+      if (insertError) {
+        console.error('Failed to create user profile:', insertError);
+        return null;
+      }
+
+      setUser({
+        id: newUserData.id,
+        email: newUserData.email,
+        name: newUserData.name,
+        role: newUserData.role as 'student' | 'admin',
+        createdAt: newUserData.created_at,
+        lastLogin: newUserData.last_login,
+        progress: newUserData.progress,
+      });
+
+      return newUserData;
+    }
 
     setUser({
       id: data.id,
@@ -101,46 +137,62 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   const signIn = async (email: string, password: string) => {
-  setLoading(true); // Start loading
-  try {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) throw error;
+      if (error) throw error;
 
-    // The auth state change listener will handle the rest
-  } catch (error) {
-    console.error('Sign in error:', error);
-    setLoading(false); // Make sure to reset loading on error
-    throw error;
-  }
-};
+      // The auth state change listener will handle loading and user state
+    } catch (error) {
+      console.error('Sign in error:', error);
+      throw error;
+    }
+  };
 
   const signUp = async (email: string, password: string, name: string) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          name, // Store name in user metadata
+        }
+      }
     });
 
     if (error) throw error;
 
-    if (data.user) {
-      // Create user profile
-      const { error: profileError } = await supabase
-        .from('users')
-        .insert({
-          id: data.user.id,
-          email,
-          name,
-          role: 'student',
-          created_at: new Date().toISOString(),
-          last_login: new Date().toISOString(),
-          progress: ProgressManager.getProgress()
-        });
+    if (data.user?.id) {
+      // Call the Edge Function to create the user profile with admin privileges
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-user-profile`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${data.session?.access_token || ""}`,
+            },
+            body: JSON.stringify({
+              userId: data.user.id,
+              email,
+              name,
+            }),
+          }
+        );
 
-      if (profileError) throw profileError;
+        if (!response.ok) {
+          const error = await response.json();
+          console.error("Failed to create user profile:", error);
+          throw new Error(error.error || "Failed to create user profile");
+        }
+      } catch (err) {
+        console.error("Error calling create-user-profile function:", err);
+        // Continue anyway - the profile will be created on first login
+      }
     }
   };
 

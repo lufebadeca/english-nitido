@@ -50,6 +50,13 @@ CREATE POLICY "Users can update own data"
   USING (auth.uid() = id)
   WITH CHECK (auth.uid() = id);
 
+CREATE POLICY "Users can insert own profile"
+  ON users
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = id);
+
+
 -- Helper function to get the current user's role, bypassing RLS.
 -- This is necessary to prevent infinite recursion in the admin policy.
 CREATE OR REPLACE FUNCTION get_my_role()

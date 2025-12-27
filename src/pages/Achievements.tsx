@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Home, BookOpen, Trophy, Settings, Volume2 } from "lucide-react";
 import { ProgressManager } from "../utils/progressUtils";
-import BroserLanguages from "../components/BrowserLanguages";
+
 
 /* 
 📦 Ejemplo de estructura de progreso guardado en localStorage:

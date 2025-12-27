@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Home, BookOpen, Trophy, Settings, Volume2 } from "lucide-react";
+import { Trophy,  } from "lucide-react";
 import { ProgressManager } from "../utils/progressUtils";
 import BrowserLanguages from "../components/BrowserLanguages";
 
